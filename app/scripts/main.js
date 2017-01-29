@@ -13,7 +13,7 @@
 
   // When data is available, set up the gallery
   function setupGallery(data) {
-    gallery = new Gallery(data.photoset.photo);
+    gallery = new Gallery(data.photos.photo);
   }
 
   // Initialize page with query
