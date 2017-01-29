@@ -29,8 +29,28 @@
   }
 
   // Show the previous photo
+  Gallery.prototype.showPrevious = function() {
+    if (this.currentIndex > 0) {
+      this.currentIndex--;
+    } else {
+      // Currently at the start, so show the last photo
+      this.currentIndex = this.photos.length - 1;
+    }
+
+    this.showPhoto(this.currentIndex);
+  }
 
   // Show the next photo
+  Gallery.prototype.showNext = function() {
+    if (this.currentIndex < this.photos.length - 1) {
+      this.currentIndex++;
+    } else {
+      // Currently at the end, so show the first photo
+      this.currentIndex = 0;
+    }
+
+    this.showPhoto(this.currentIndex);
+  }
 
   // Format thumbnails
   Gallery.prototype.showThumbnails = function(data) {
