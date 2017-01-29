@@ -8,9 +8,10 @@
   // API call for Flickr
   function callFlickr() {
     var album_id = '3064539@N24';
-    var api_method = 'flickr.groups.pools.getPhotos'
+    var api_method = 'flickr.groups.pools.getPhotos';
+    var extras = 'url_m,owner_name,views,geo,date_taken'
 
-    var url = 'https://api.flickr.com/services/rest/?&method=' + api_method + '&api_key=' + api_key + '&group_id=' + album_id + '&format=json&nojsoncallback=1';
+    var url = 'https://api.flickr.com/services/rest/?&method=' + api_method + '&api_key=' + api_key + '&group_id=' + album_id + '&format=json&nojsoncallback=1&extras=' + extras;
 
     var request = new XMLHttpRequest();
     request.open('GET', url, true);
@@ -38,8 +39,8 @@
   // Utilities for working with Flickr image URLs
   // Docs: https://www.flickr.com/services/api/misc.urls.html
   function buildThumbnailURL(photo) {
-    // Thumbnail format: https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}_q.jpg
-    return 'https://farm' + photo.farm + '.staticflickr.com/' + photo.server + '/' + photo.id + '_' + photo.secret + '_q.jpg';
+    // Thumbnail format: https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}_n.jpg
+    return 'https://farm' + photo.farm + '.staticflickr.com/' + photo.server + '/' + photo.id + '_' + photo.secret + '_n.jpg';
   }
 
   function buildPhotoURL(photo) {

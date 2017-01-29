@@ -29,10 +29,25 @@
       var container = document.getElementById('currentphoto');
       var currentPhoto = this.photos[this.currentIndex];
       var imgURL = Flickr.buildLargePhotoURL(currentPhoto);
+      var orientation = this.checkOrientation(currentPhoto);
 
       // Display current image in display area
-      container.innerHTML = '<img src="' + imgURL + '"/>';
+      container.innerHTML = '<img src="' + imgURL + '" class="' + orientation + '" />';
       container.innerHTML = container.innerHTML + '<h3>' + currentPhoto.title + '</h3>';
+    }
+  }
+
+  // Check photo orientation
+  Gallery.prototype.checkOrientation = function (photo) {
+    var height = photo.height_m;
+    var width = photo.width_m;
+
+    if (height > width) {
+      return 'portrait';
+    } else if (width > height) {
+      return 'landscape';
+    } else {
+      return 'square';
     }
   }
 
@@ -82,12 +97,14 @@
     for (var i = 0; i < this.photos.length; i++) {
       var currentPhoto = this.photos[i];
       var thumbURL = Flickr.buildThumbnailURL(currentPhoto);
+      var orientation = this.checkOrientation(currentPhoto);
       var img;
       var link;
       var li;
 
       // Set up image
       img = document.createElement('img');
+      img.className = orientation;
       img.src = thumbURL;
 
       // Set up link for triggering show photo
