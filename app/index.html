@@ -27,21 +27,31 @@
     <!--[if lt IE 10]>
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-
-    <div class="ui-gallery">
-      <div class="lightbox">
-        <a href="" id="toggleclose">Close</a>
+    <div class="page_wrapper">
+      <header>
         <div class="content">
-          <a href="" id="toggleprev">Prev</a>
-          <div id="currentphoto">
-            <!-- Container for current photo -->
-          </div>
-          <a href="" id="togglenext">Next</a>
+          <h1><a title="Gallery viewer">🐠📷👀</a></h1>
+        </div>
+      </header>
+      <div class="ui-gallery">
+        <div class="content">
+          <ul id="thumbnails">
+            <!-- Container for gallery thumbnails -->
+          </ul>
         </div>
       </div>
-      <ul id="thumbnails">
-        <!-- Container for gallery thumbnails -->
-      </ul>
+      <div class="modal">
+        <div class="content">
+          <a href="" id="toggleclose">Close</a>
+          <div class="photo-container">
+            <a href="" id="toggleprev">Prev</a>
+            <div id="currentphoto">
+              <!-- Container for current photo -->
+            </div>
+            <a href="" id="togglenext">Next</a>
+          </div>
+        </div>
+      </div>
       <div class="overlay"></div>
     </div>
 

@@ -1,0 +1,13 @@
+// Header styles
+
+header {
+  background: $black;
+  border-radius: $default-corner $default-corner 0px 0px;
+  border-bottom: 1px solid rgba($white, 0.25);
+
+  h1 {
+    font-size: 1.5rem;
+    letter-spacing: 5px;
+    margin: 0;
+  }
+}
