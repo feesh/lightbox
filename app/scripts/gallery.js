@@ -3,18 +3,24 @@
 (function(document, window) {
   'use strict';
 
+  var lightbox = document.getElementById('lightbox');
+  var overlay = document.getElementById('overlay');
+
   // Set up gallery with ref to photos and DOM
   function Gallery(photos) {
     this.currentIndex = 0;
     this.photos = photos;
 
-    // Initialize by showing the first photo and the thumbs
-    this.showPhoto(this.currentIndex);
+    // Initialize by showing the thumbs
     this.showThumbnails();
   }
 
   // Show the current photo
   Gallery.prototype.showPhoto = function(index) {
+    // Make lightbox visible if it's not
+    lightbox.classList.add('visible');
+    overlay.classList.add('visible');
+
     if (index >= 0 && index < this.photos.length) {
       this.currentIndex = index;
       console.log(this.currentIndex);
@@ -28,6 +34,12 @@
       container.innerHTML = '<img src="' + imgURL + '"/>';
       container.innerHTML = container.innerHTML + '<h3>' + currentPhoto.title + '</h3>';
     }
+  }
+
+  // Close lightbox
+  Gallery.prototype.closeLightbox = function() {
+    lightbox.classList.remove('visible');
+    overlay.classList.remove('visible');
   }
 
   // Show the previous photo

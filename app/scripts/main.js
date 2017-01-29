@@ -22,6 +22,8 @@
 
     var prevBtn = document.getElementById('toggleprev');
     var nextBtn = document.getElementById('togglenext');
+    var closeBtn = document.getElementById('toggleclose');
+    var overlay = document.getElementById('overlay');
 
     prevBtn.addEventListener('click', function(event) {
       event.preventDefault();
@@ -33,6 +35,18 @@
       event.preventDefault();
       console.log('toggle next');
       gallery.showNext.bind(gallery)();
+    });
+
+    closeBtn.addEventListener('click', function(event) {
+      event.preventDefault();
+      console.log('toggle close');
+      gallery.closeLightbox();
+    });
+
+    overlay.addEventListener('click', function(event) {
+      event.preventDefault();
+      console.log('toggle close');
+      gallery.closeLightbox();
     });
   }
 
