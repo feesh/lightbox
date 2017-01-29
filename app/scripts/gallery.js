@@ -26,6 +26,7 @@
 
       // Display current image in display area
       container.innerHTML = '<img src="' + imgURL + '"/>';
+      container.innerHTML = container.innerHTML + '<h3>' + currentPhoto.title + '</h3>';
     }
   }
 

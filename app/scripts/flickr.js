@@ -7,10 +7,10 @@
 
   // API call for Flickr
   function callFlickr() {
-    var album_id = '72157679089031645';
-    var api_method = 'flickr.photosets.getPhotos'
+    var album_id = '3064539@N24';
+    var api_method = 'flickr.groups.pools.getPhotos'
 
-    var url = 'https://api.flickr.com/services/rest/?&method=' + api_method + '&api_key=' + api_key + '&photoset_id=' + album_id + '&format=json&nojsoncallback=1';
+    var url = 'https://api.flickr.com/services/rest/?&method=' + api_method + '&api_key=' + api_key + '&group_id=' + album_id + '&format=json&nojsoncallback=1';
 
     var request = new XMLHttpRequest();
     request.open('GET', url, true);
