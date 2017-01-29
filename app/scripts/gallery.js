@@ -104,7 +104,6 @@
 
       // Set up image
       img = document.createElement('img');
-      img.className = orientation;
       img.src = thumbURL;
 
       // Set up link for triggering show photo
@@ -115,7 +114,7 @@
 
       // Set up li
       li = document.createElement('li');
-      li.className = 'thumbnail';
+      li.className = 'thumbnail ' + orientation;
       li.appendChild(link);
 
       // Append to a gallery container

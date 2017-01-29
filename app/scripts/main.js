@@ -20,6 +20,7 @@
   function init() {
     Flickr.callFlickr(processData);
 
+    // Set up buttons
     var prevBtn = document.getElementById('toggleprev');
     var nextBtn = document.getElementById('togglenext');
     var closeBtn = document.getElementById('toggleclose');
