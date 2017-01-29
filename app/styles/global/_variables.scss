@@ -1,0 +1,65 @@
+// Variables for reuse
+
+/*  Type
+-------------------------------------------------------*/
+
+$cabin: "Cabin", Proxima Nova, Helvetica Neue, sans-serif;
+
+
+/*  Colors
+-------------------------------------------------------*/
+
+$black:           #111;
+$white:           #fff;
+
+$blue-light:      AliceBlue;
+$blue-medium:     #49a09d;
+$purple-medium:   #5f2c82;
+
+
+// Colors in context
+$copy-dark:       $black;
+$copy-light:      $blue-light;
+$bg-left:         $blue-medium;
+$bg-right:        $purple-medium;
+$bg-modal:        #000;
+
+
+/*  Sizes
+-------------------------------------------------------*/
+
+$default-corner:   6px;
+
+$small-screens:     600px;
+$medium-screens:    800px;
+$large-screens:     960px;
+$giant-screens:     1400px;
+
+
+/*  Z-index
+-------------------------------------------------------*/
+
+$zindex: (
+  modal: 3,
+  overlay: 2,
+  gallery: 1
+);
+
+
+/*  Transitions
+-------------------------------------------------------*/
+$default-tx-time:     0.3s;
+
+$tx-all:              all              $default-tx-time ease-in-out;
+
+$tx-bgcolor:          background-color $default-tx-time ease-in-out;
+$tx-color:            color            $default-tx-time ease-in-out;
+$tx-brdcolor:         border-color     $default-tx-time ease-in-out;
+$tx-opacity:          opacity          $default-tx-time ease-in-out;
+$tx-width:            width            $default-tx-time ease-in-out;
+$tx-height:           height           $default-tx-time ease-in-out;
+$tx-border:           border           $default-tx-time ease-in-out;
+$tx-transform:        transform        $default-tx-time ease-in-out;
+
+$tx-colors:           $tx-bgcolor, $tx-color, $tx-brdcolor;
+$tx-size:             $tx-width, $tx-height;
