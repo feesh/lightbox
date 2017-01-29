@@ -1,7 +1,7 @@
 // Overlay style
 
 .overlay {
-  display: none; // Temporarily
+  display: none; // Initially hide
   position: fixed;
   z-index: map-get($zindex, overlay);
   top: 0;
@@ -9,4 +9,8 @@
   bottom: 0;
   left: 0;
   background: rgba($black, 0.65);
+
+  &.visible {
+    display: block;
+  }
 }

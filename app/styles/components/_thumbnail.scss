@@ -1,15 +1,18 @@
 // Styles for each individual thumbnail
 
 .thumbnail {
-  overflow: hidden;
   text-align: left;
   color: $copy-light;
   cursor: pointer;
+  justify-content: center;
+  align-content: center;
 
-  > img {
-    display: block;
-    width: 100%;
-    height: auto;
+  > a {
+    > img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
   }
 
   .meta {
