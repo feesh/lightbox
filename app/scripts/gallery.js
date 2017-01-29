@@ -8,8 +8,9 @@
     this.currentIndex = 0;
     this.photos = photos;
 
-    // Initialize by showing the first photo
+    // Initialize by showing the first photo and the thumbs
     this.showPhoto(this.currentIndex);
+    this.showThumbnails();
   }
 
   // Show the current photo
@@ -53,12 +54,12 @@
   }
 
   // Format thumbnails
-  Gallery.prototype.showThumbnails = function(data) {
+  Gallery.prototype.showThumbnails = function() {
     var thumbnails = document.getElementById('thumbnails');
 
     // For each photo, generate a thumbnail and show on page
-    for (var i = 0; i < data.photoset.photo.length; i++) {
-      var currentPhoto = data.photoset.photo[i];
+    for (var i = 0; i < this.photos.length; i++) {
+      var currentPhoto = this.photos[i];
       var thumbURL = Flickr.buildThumbnailURL(currentPhoto);
 
       // Append to a gallery container

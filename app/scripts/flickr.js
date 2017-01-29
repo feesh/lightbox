@@ -21,7 +21,6 @@
         var data = JSON.parse(this.response);
         console.log(data);
         var gallery = new Gallery(data.photoset.photo);
-        gallery.showThumbnails(data);
 
         return data;
       } else {
