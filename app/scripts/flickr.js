@@ -38,8 +38,8 @@
   // Utilities for working with Flickr image URLs
   // Docs: https://www.flickr.com/services/api/misc.urls.html
   function buildThumbnailURL(photo) {
-    // Thumbnail format: https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}_m.jpg
-    return 'https://farm' + photo.farm + '.staticflickr.com/' + photo.server + '/' + photo.id + '_' + photo.secret + '_m.jpg';
+    // Thumbnail format: https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}_n.jpg
+    return 'https://farm' + photo.farm + '.staticflickr.com/' + photo.server + '/' + photo.id + '_' + photo.secret + '_n.jpg';
   }
 
   function buildPhotoURL(photo) {
