@@ -1,11 +1,9 @@
 // Styles for each individual thumbnail
 
 .thumbnail {
-  text-align: left;
-  color: $copy-light;
   cursor: pointer;
   justify-content: center;
-  align-content: center;
+  align-items: center;
 
   > a {
     > img {
@@ -13,13 +11,5 @@
       width: 100%;
       height: auto;
     }
-  }
-
-  .meta {
-    background: $black;
-    padding: 0.25rem 0.5rem;
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.8rem;
   }
 }
