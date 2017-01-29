@@ -25,7 +25,7 @@
       var imgURL = Flickr.buildLargePhotoURL(currentPhoto);
 
       // Display current image in display area
-      container.innerHTML = container.innerHTML + '<img src="' + imgURL + '"/>';
+      container.innerHTML = '<img src="' + imgURL + '"/>';
     }
   }
 
