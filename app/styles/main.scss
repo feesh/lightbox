@@ -3,7 +3,7 @@
 $icon-font-path: '../fonts/';
 
 // bower:scss
-@import "bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+// @import "bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 // endbower
 
 
@@ -13,3 +13,7 @@ $icon-font-path: '../fonts/';
 @import 'layout/base';
 @import 'layout/content';
 @import 'layout/header';
+
+@import 'components/gallery';
+@import 'components/thumbnail';
+@import 'components/overlay';
