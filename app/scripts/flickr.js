@@ -20,7 +20,7 @@
         // Success!
         var data = JSON.parse(this.response);
         console.log(data);
-        Main.showThumbnails(data);
+        Gallery.showThumbnails(data);
       } else {
         // We reached our target server, but it returned an error
         console.log('error: ');
