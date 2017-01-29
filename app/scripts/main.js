@@ -11,9 +11,9 @@
     setupGallery(data);
   }
 
+  // When data is available, set up the gallery
   function setupGallery(data) {
     gallery = new Gallery(data.photoset.photo);
-    console.log('yes?');
   }
 
   // Initialize page with query
