@@ -86,6 +86,7 @@
 
       // Set up li
       li = document.createElement('li');
+      li.className = 'thumbnail';
       li.appendChild(link);
 
       // Append to a gallery container
