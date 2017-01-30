@@ -4,16 +4,14 @@
   'use strict';
 
   var gallery;
-  var data;
-
-  function processData(data) {
-    data = data;
-    setupGallery(data);
-  }
 
   // When data is available, set up the gallery
   function setupGallery(data) {
     gallery = new Gallery(data.photos.photo);
+  }
+
+  function processData(data) {
+    setupGallery(data);
   }
 
   // Initialize page with query
@@ -54,7 +52,7 @@
   window.Main = {
     init: init,
     processData: processData
-  }
+  };
 })(document, window);
 
 Main.init();

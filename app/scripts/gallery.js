@@ -35,7 +35,7 @@
       container.innerHTML = '<figure class="' + orientation + '"><img src="' + imgURL + '" /></figure>';
       container.innerHTML = container.innerHTML + '<figcaption>' + currentPhoto.title + '</figcaption>';
     }
-  }
+  };
 
   // Check photo orientation
   Gallery.prototype.checkOrientation = function (photo) {
@@ -49,13 +49,13 @@
     } else {
       return 'square';
     }
-  }
+  };
 
   // Close lightbox
   Gallery.prototype.closeLightbox = function() {
     lightbox.classList.remove('visible');
     overlay.classList.remove('visible');
-  }
+  };
 
   // Show the previous photo
   Gallery.prototype.showPrevious = function() {
@@ -67,7 +67,7 @@
     }
 
     this.showPhoto(this.currentIndex);
-  }
+  };
 
   // Show the next photo
   Gallery.prototype.showNext = function() {
@@ -79,7 +79,7 @@
     }
 
     this.showPhoto(this.currentIndex);
-  }
+  };
 
   // Format thumbnails
   Gallery.prototype.showThumbnails = function() {
