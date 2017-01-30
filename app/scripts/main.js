@@ -59,16 +59,13 @@
       e = e || window.event;
 
       if (e.keyCode == '37') {
-        // left arrow
-        console.log('toggle prev with key');
+        // left arrow toggle previous
         gallery.showPrevious.bind(gallery)();
       } else if (e.keyCode == '39') {
-        // right arrow
-        console.log('toggle next with key');
+        // right arrow toggle next
         gallery.showNext.bind(gallery)();
       } else if (e.keyCode == '27') {
-        // esc key
-        console.log('exit lightbox with key');
+        // esc key exit lightbox
         gallery.closeLightbox();
       }
     }
