@@ -5,19 +5,8 @@
 
   var gallery;
 
-  // When data is available, set up the gallery
-  function setupGallery(data) {
-    gallery = new Gallery(data.photos.photo);
-  }
-
-  function processData(data) {
-    setupGallery(data);
-  }
-
-  // Initialize page with query
-  function init() {
-    Flickr.callFlickr(processData);
-
+  // Event listeners for the lightbox
+  function setupLightboxNav() {
     // Set up buttons
     var prevBtn = document.getElementById('toggleprev');
     var nextBtn = document.getElementById('togglenext');
@@ -51,7 +40,10 @@
       console.log('toggle close');
       gallery.closeLightbox();
     });
+  }
 
+  // Event listener for key presses
+  function setupKeyCheck() {
     // Set up key press checks
     document.onkeydown = checkKey;
 
@@ -71,10 +63,30 @@
     }
   }
 
+  // When data is available, set up the gallery
+  function setupGallery(data, target) {
+    var container = document.getElementById(target);
+    gallery = new Gallery(data.photos.photo, container);
+
+    // Set up handlers
+    setupLightboxNav();
+    setupKeyCheck();
+  }
+
+  // Once data is received, set up gallery
+  function processData(data, container) {
+    setupGallery(data, container);
+  }
+
+  // Initialize page with query
+  function init(container) {
+    Flickr.callFlickr(processData, container);
+  }
+
   window.Main = {
     init: init,
     processData: processData
   };
 })(document, window);
 
-Main.init();
+Main.init('ui-gallery');
