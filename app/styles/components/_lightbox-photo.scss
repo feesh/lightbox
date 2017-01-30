@@ -2,6 +2,8 @@
 
 .lightbox-photo {
   position: relative;
+  min-height: 50vh;
+  min-width: 50vw;
 
   figure {
     text-align: center;
