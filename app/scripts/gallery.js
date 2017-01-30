@@ -3,7 +3,7 @@
 (function(document, window) {
   'use strict';
 
-  var lightbox = document.getElementById('lightbox');
+  var lightbox;
   var overlay;
 
   // Set up gallery with ref to photos and DOM
@@ -16,11 +16,68 @@
     this.showThumbnails();
 
     // Attach containers for overlay and lightbox
+    this.setupOverlay();
+    this.setupLightbox();
+  }
+
+  // Set up overlay
+  Gallery.prototype.setupOverlay = function() {
     overlay = document.createElement('div');
     overlay.className = 'overlay';
     overlay.id = 'overlay';
     overlay.title = 'Click anywhere to close';
     this.container.appendChild(overlay);
+  }
+
+  // Set up lightbox
+  Gallery.prototype.setupLightbox = function() {
+
+    // Close button
+    var closeBtn = document.createElement('a');
+    closeBtn.href = '';
+    closeBtn.id = 'toggleclose';
+    closeBtn.title = 'Close lightbox';
+    closeBtn.alt = 'Close button for lightbox';
+    closeBtn.className = 'iconbtn close';
+    closeBtn.innerHTML = '<i class="fa fa-close fa-2x"></i>';
+
+    // Prev button
+    var prevBtn = document.createElement('a');
+    prevBtn.href = '';
+    prevBtn.id = 'toggleprev';
+    prevBtn.title = 'View previous photo';
+    prevBtn.alt = 'View previous photo';
+    prevBtn.className = 'iconbtn prev';
+    prevBtn.innerHTML = '<i class="fa fa-chevron-left fa-2x"></i>';
+
+    // Next button
+    var nextBtn = document.createElement('a');
+    nextBtn.href = '';
+    nextBtn.id = 'togglenext';
+    nextBtn.title = 'View next photo';
+    nextBtn.alt = 'View next photo';
+    nextBtn.className = 'iconbtn next';
+    nextBtn.innerHTML = '<i class="fa fa-chevron-right fa-2x"></i>';
+
+    // Lightboxed photo
+    var lightboxPhoto = document.createElement('div');
+    lightboxPhoto.className = 'lightbox-photo';
+    lightboxPhoto.id = 'currentphoto';
+
+    // Photo container
+    var photoContainer = document.createElement('div');
+    photoContainer.className = 'photo-container';
+    photoContainer.appendChild(prevBtn);
+    photoContainer.appendChild(lightboxPhoto);
+    photoContainer.appendChild(nextBtn);
+
+    // Lightbox container
+    lightbox = document.createElement('div');
+    lightbox.id = 'lightbox';
+    lightbox.className = 'modal';
+    lightbox.appendChild(closeBtn);
+    lightbox.appendChild(photoContainer);
+    this.container.appendChild(lightbox);
   }
 
   // Show the current photo
