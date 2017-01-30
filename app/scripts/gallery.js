@@ -157,6 +157,7 @@
        };
     }
 
+    // Generate HTML for thumbnails and add to DOM
     var thumbnails = document.createElement('ul');
     thumbnails.className = 'thumbnails';
     thumbnails.id = 'thumbnails';
@@ -165,7 +166,6 @@
     thumbnailsContainer.className = 'content';
     thumbnailsContainer.appendChild(thumbnails);
     this.container.appendChild(thumbnailsContainer);
-
 
     // For each photo, generate a thumbnail and show on page
     for (var i = 0; i < this.photos.length; i++) {
