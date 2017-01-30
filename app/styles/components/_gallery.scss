@@ -20,16 +20,20 @@
     list-style: none;
     transition: $tx-all;
 
-     @include break-at($small-screens)  {
+    @include break-at($small-screens)  {
       min-width: 50%;
       max-width: 50%;
       flex: 1 0 50%;
     }
 
-     @include break-at($medium-screens)  {
+    @include break-at($medium-screens)  {
       min-width: 33.3%;
       max-width: 33.3%;
       flex: 1 0 33.3%;
+    }
+
+    @include ie10-hack {
+      display: inline-block;
     }
 
     &:hover {

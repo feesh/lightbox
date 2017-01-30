@@ -39,6 +39,10 @@
     left: 18%;
   }
 
+  @include ie10-hack {
+    -ms-overflow-style: none;
+  }
+
   &.visible { display: flex; }
 
   .close {
