@@ -101,9 +101,6 @@
       var img;
       var link;
       var li;
-      var meta;
-      var user;
-      var views;
 
       // Set up image
       img = document.createElement('img');
@@ -115,27 +112,10 @@
       link.addEventListener('click', handleClick(i, this));
       link.appendChild(img);
 
-      // Set up user info
-      user = document.createElement('span');
-      user.className = 'user';
-      user.innerHTML = '📷&nbsp;' + currentPhoto.ownername;
-
-      // Set up view info
-      views = document.createElement('span');
-      views.className = 'views';
-      views.innerHTML = currentPhoto.views + '&nbsp;👀';
-
-      // Set up meta info container
-      meta = document.createElement('div');
-      meta.className = 'meta';
-      meta.appendChild(user);
-      meta.appendChild(views);
-
       // Set up li
       li = document.createElement('li');
       li.className = 'thumbnail ' + orientation;
       li.appendChild(link);
-      li.appendChild(meta);
 
       // Append to a gallery container
       thumbnails.appendChild(li);
