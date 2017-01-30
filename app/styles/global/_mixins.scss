@@ -1,0 +1,8 @@
+// Mixins
+
+// For setting breakpoints. Default is min-width up
+@mixin break-at($point, $breaktype: min-width) {
+  @media only screen and ($breaktype: $point)  {
+    @content;
+  }
+}

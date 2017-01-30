@@ -9,6 +9,7 @@ $icon-font-path: '../fonts/';
 
 // Import partials
 @import 'global/variables';
+@import 'global/mixins';
 
 @import 'layout/base';
 @import 'layout/content';
