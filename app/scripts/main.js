@@ -44,23 +44,23 @@
 
   // Event listener for key presses
   function setupKeyCheck() {
-    // Set up key press checks
-    document.onkeydown = checkKey;
-
     function checkKey(e) {
       e = e || window.event;
 
-      if (e.keyCode == '37') {
+      if (e.keyCode === '37') {
         // left arrow toggle previous
         gallery.showPrevious.bind(gallery)();
-      } else if (e.keyCode == '39') {
+      } else if (e.keyCode === '39') {
         // right arrow toggle next
         gallery.showNext.bind(gallery)();
-      } else if (e.keyCode == '27') {
+      } else if (e.keyCode === '27') {
         // esc key exit lightbox
         gallery.closeLightbox();
       }
     }
+
+    // Set up key press checks
+    document.onkeydown = checkKey;
   }
 
   // When data is available, set up the gallery

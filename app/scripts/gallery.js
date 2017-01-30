@@ -27,7 +27,7 @@
     overlay.id = 'overlay';
     overlay.title = 'Click anywhere to close';
     this.container.appendChild(overlay);
-  }
+  };
 
   // Set up lightbox
   Gallery.prototype.setupLightbox = function() {
@@ -78,7 +78,7 @@
     lightbox.appendChild(closeBtn);
     lightbox.appendChild(photoContainer);
     this.container.appendChild(lightbox);
-  }
+  };
 
   // Show the current photo
   Gallery.prototype.showPhoto = function(index) {
@@ -172,9 +172,7 @@
       var currentPhoto = this.photos[i];
       var thumbURL = Flickr.buildThumbnailURL(currentPhoto);
       var orientation = this.checkOrientation(currentPhoto);
-      var img;
-      var link;
-      var li;
+      var img, link, li;
 
       // Set up image
       img = document.createElement('img');
