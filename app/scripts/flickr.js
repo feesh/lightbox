@@ -7,7 +7,7 @@
   var apiKey = 'e0bc054b3d94fd9c1f91199ef47ae646';
 
   // API call for Flickr
-  function callFlickr() {
+  function callFlickr(processData, container) {
     var searchText = 'nobannowall';
     var apiMethod = 'flickr.photos.search';
     var extras = 'url_m,owner_name,views,geo,date_taken';
@@ -23,7 +23,7 @@
         var data = JSON.parse(this.response);
         console.log(data);
 
-        Main.processData(data);
+        Main.processData(data, container);
       } else {
         // We reached our target server, but it returned an error
         console.log('error: ');

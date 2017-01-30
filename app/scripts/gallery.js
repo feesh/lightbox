@@ -4,15 +4,23 @@
   'use strict';
 
   var lightbox = document.getElementById('lightbox');
-  var overlay = document.getElementById('overlay');
+  var overlay;
 
   // Set up gallery with ref to photos and DOM
-  function Gallery(photos) {
+  function Gallery(photos, element) {
     this.currentIndex = 0;
+    this.container = element;
     this.photos = photos;
 
     // Initialize by showing the thumbs
     this.showThumbnails();
+
+    // Attach containers for overlay and lightbox
+    overlay = document.createElement('div');
+    overlay.className = 'overlay';
+    overlay.id = 'overlay';
+    overlay.title = 'Click anywhere to close';
+    this.container.appendChild(overlay);
   }
 
   // Show the current photo
@@ -32,8 +40,9 @@
       var orientation = this.checkOrientation(currentPhoto);
 
       // Display current image in display area
-      container.innerHTML = '<figure class="' + orientation + '"><img src="' + imgURL + '" /></figure>';
-      container.innerHTML = container.innerHTML + '<figcaption>' + currentPhoto.title + '</figcaption>';
+      container.innerHTML = '<figure class="' + orientation + '"><img src="' +
+        imgURL + '" /><figcaption>' + currentPhoto.title +
+        '</figcaption></figure>';
     }
   };
 
