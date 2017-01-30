@@ -3,7 +3,6 @@
 .modal {
   position: fixed;
   z-index: map-get($zindex, modal);
-  overflow: scroll;
   top: 100%;
   right: 0%;
   bottom: 0%;
@@ -39,10 +38,6 @@
   @include break-at($large-screens) {
     right: 18%;
     left: 18%;
-  }
-
-  @include ie10-hack {
-    -ms-overflow-style: none;
   }
 
   &.visible {
