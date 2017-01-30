@@ -109,12 +109,12 @@
       // Set up link for triggering show photo
       link = document.createElement('a');
       link.href = img.src;
-      link.addEventListener('click', handleClick(i, this));
       link.appendChild(img);
 
       // Set up li
       li = document.createElement('li');
       li.className = 'thumbnail ' + orientation;
+      li.addEventListener('click', handleClick(i, this));
       li.appendChild(link);
 
       // Append to a gallery container

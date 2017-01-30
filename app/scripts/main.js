@@ -52,7 +52,7 @@
       gallery.closeLightbox();
     });
 
-    // Set up keydown checks
+    // Set up key press checks
     document.onkeydown = checkKey;
 
     function checkKey(e) {
