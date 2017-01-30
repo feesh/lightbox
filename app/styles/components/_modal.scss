@@ -5,8 +5,9 @@
   z-index: map-get($zindex, modal);
   overflow: scroll;
   top: 5%;
-  right: 15%;
-  left: 15%;
+  right: 18%;
+  left: 18%;
+  bottom: 5%;
 
   max-width: 100vw;
   max-height: 100vh;
@@ -23,58 +24,22 @@
 
   &.visible { display: flex; }
 
-  // For when too tall photos get cut off
-  @media only screen and (min-width: $medium-screens)  {
-    bottom: 5%;
-  }
-
   .close {
     position: absolute;
     top: 0.5rem;
-    right: 0.75rem;
+    right: 0.5rem;
 
     @media only screen and (min-width: $medium-screens)  {
+      top: 1rem;
       right: 1.5rem;
     }
   }
 
-  .content {
+  .photo-container {
     display: flex;
+    width: 100%;
+    height: 100%;
     align-items: center;
     justify-content: space-between;
-  }
-
-  .image {
-    text-align: center;
-
-    img {
-      &.landscape {
-        width: 75vw;
-        height: auto;
-      }
-
-      &.portrait {
-        height: 75vh;
-        width: auto;
-      }
-    }
-
-    h3 {
-      padding: 1rem 1rem 0;
-      margin: 0;
-      font-weight: normal;
-      font-size: 1rem;
-
-      @media only screen and (min-width: $medium-screens)  {
-        letter-spacing: 1px;
-        font-size: 1.5rem;
-      }
-    }
-  }
-
-  .arrow {
-    &.prev {
-      text-align: right;
-    }
   }
 }
