@@ -11,6 +11,7 @@
   li {
     display: flex;
     flex: 1 0 100%;
+    flex-direction: column;
     min-width: 100%;
     height: auto;
     padding: 1rem;
