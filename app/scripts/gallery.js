@@ -13,7 +13,7 @@
     this.photos = photos;
 
     // Initialize by showing the thumbs
-    this.showThumbnails();
+    this.setupThumbnails();
 
     // Attach containers for overlay and lightbox
     this.setupOverlay();
@@ -148,7 +148,7 @@
   };
 
   // Format thumbnails
-  Gallery.prototype.showThumbnails = function() {
+  Gallery.prototype.setupThumbnails = function() {
     function handleClick(index, gallery) {
        return function (event) {
           event.preventDefault();
@@ -157,7 +157,15 @@
        };
     }
 
-    var thumbnails = document.getElementById('thumbnails');
+    var thumbnails = document.createElement('ul');
+    thumbnails.className = 'thumbnails';
+    thumbnails.id = 'thumbnails';
+
+    var thumbnailsContainer = document.createElement('div');
+    thumbnailsContainer.className = 'content';
+    thumbnailsContainer.appendChild(thumbnails);
+    this.container.appendChild(thumbnailsContainer);
+
 
     // For each photo, generate a thumbnail and show on page
     for (var i = 0; i < this.photos.length; i++) {
