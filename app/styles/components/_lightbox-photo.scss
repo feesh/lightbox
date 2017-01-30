@@ -1,0 +1,45 @@
+// Image styles for the primary photo in lightbox
+
+.lightbox-photo {
+  position: relative;
+
+  figure {
+    text-align: center;
+
+    &.landscape {
+      height: auto;
+      width: 50vw;
+
+      img {
+        height: auto;
+        width: 100%;
+      }
+    }
+
+    &.portrait {
+      height: 75vh;
+      width: auto;
+
+      img {
+        height: 100%;
+        width: auto;
+      }
+    }
+  }
+
+  figcaption {
+    position: absolute;
+    bottom: 5%;
+    left: 0;
+    padding: 1rem;
+    margin: 0;
+    font-weight: normal;
+    font-size: 1rem;
+    background: rgba($black, 0.5);
+
+    @media only screen and (min-width: $medium-screens)  {
+      letter-spacing: 1px;
+      font-size: 1.5rem;
+    }
+  }
+}
