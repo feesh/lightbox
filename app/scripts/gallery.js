@@ -1,4 +1,5 @@
 // Gallery functions
+/* global Flickr:true */
 
 (function(document, window) {
   'use strict';

@@ -1,8 +1,8 @@
-'use strict';
-
 // Flickr utilities
+/* global Main:true */
 
 (function (document, window) {
+  'use strict';
 
   var apiKey = 'e0bc054b3d94fd9c1f91199ef47ae646';
 

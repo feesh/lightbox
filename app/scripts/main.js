@@ -1,4 +1,7 @@
 // Main JS for Lightbox gallery
+/* global Main:true */
+/* global Flickr:true */
+/* global Gallery:true */
 
 (function(document, window) {
   'use strict';
