@@ -32,7 +32,7 @@
       var orientation = this.checkOrientation(currentPhoto);
 
       // Display current image in display area
-      container.innerHTML = '<img src="' + imgURL + '" class="' + orientation + '" />';
+      container.innerHTML = '<figure class="image"><img src="' + imgURL + '" class="' + orientation + '" /></figure>';
       container.innerHTML = container.innerHTML + '<h3>' + currentPhoto.title + '</h3>';
     }
   }
