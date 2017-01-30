@@ -46,7 +46,7 @@
     top: 0.5rem;
     right: 0.5rem;
 
-    @media only screen and (min-width: $medium-screens)  {
+     @include break-at($medium-screens)  {
       top: 1rem;
       right: 1.5rem;
     }
@@ -64,6 +64,11 @@
     .lightbox-photo {
       flex: 1 0 100%;
       order: -1;
+
+      @include break-at($medium-screens) {
+        flex: 1 0 auto;
+        order: 0;
+      }
     }
   }
 
@@ -72,5 +77,10 @@
     max-width: 50%;
 
     &.next { text-align: right; }
+
+    @include break-at($medium-screens) {
+      flex: 1 0 auto;
+      max-width: 100%;
+    }
   }
 }

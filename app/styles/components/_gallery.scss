@@ -19,13 +19,13 @@
     list-style: none;
     transition: $tx-all;
 
-    @media only screen and (min-width: $small-screens)  {
+     @include break-at($small-screens)  {
       min-width: 50%;
       max-width: 50%;
       flex: 1 0 50%;
     }
 
-    @media only screen and (min-width: $medium-screens)  {
+     @include break-at($medium-screens)  {
       min-width: 33.3%;
       max-width: 33.3%;
       flex: 1 0 33.3%;
