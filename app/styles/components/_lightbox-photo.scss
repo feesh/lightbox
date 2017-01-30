@@ -5,10 +5,12 @@
 
   figure {
     text-align: center;
+    margin: 0;
 
     &.landscape {
       height: auto;
-      width: 50vw;
+
+      @include break-at($medium-screens) { width: 50vw; }
 
       img {
         height: auto;
@@ -17,8 +19,10 @@
     }
 
     &.portrait {
-      height: 75vh;
       width: auto;
+      height: 50vh;
+
+      @include break-at($medium-screens) { height: 75vh; }
 
       img {
         height: 100%;
