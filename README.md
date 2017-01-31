@@ -18,6 +18,7 @@ Although this was a fun project to start on, given the time constraints there ar
 - [ ] Dynamic search, change the search query to load a new set.
 - [ ] Lazy loading for images.
 - [ ] Infinite scroll to continue pulling new pages of images.
+- [ ] Dynamically set max-height or max-width for too-tall or too-wide photos.
 
 ### 🖥 Technologies used
 - Javascript
