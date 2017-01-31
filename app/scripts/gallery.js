@@ -97,7 +97,7 @@
       var orientation = this.checkOrientation(currentPhoto);
 
       // Display current image in display area
-      container.innerHTML = `<figure class="${orientation}"><img src="${imgURL}"/><figcaption>${currentPhoto.title}</figcaption></figure>`;
+      container.innerHTML = `<figure class="${orientation}"><img src="${imgURL}" /><figcaption>${currentPhoto.title}</figcaption></figure>`;
     }
   };
 
