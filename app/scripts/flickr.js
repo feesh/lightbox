@@ -25,8 +25,6 @@
         var data = JSON.parse(this.response);
         if (data.stat === 'ok') {
           // Success!
-          console.log(data);
-
           // Preload images as soon as we get a response
           for( var i = 0; i < data.photos.photo.length; i++ ) {
             var thumbURL = buildThumbnailURL(data.photos.photo[i]);
