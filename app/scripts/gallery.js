@@ -11,13 +11,8 @@
   // Set up gallery with ref to photos and DOM
   function Gallery(photos, element) {
     this.currentIndex = 0;
-    this.currentPage = 1;
     this.container = element;
     this.photos = photos;
-
-    // Get content div reference
-    this.setupContainer();
-    this.thumbnails = document.getElementById('thumbnails');
 
     // Initialize by showing the thumbs
     this.setupThumbnails();
@@ -160,12 +155,18 @@
        };
     }
 
-    // Figure out which set of images to append next
-    // first set 0-32, second 33-65, etc
-    var i = (this.currentPage - 1) * 33;
+    // Generate HTML for thumbnails and add to DOM
+    var thumbnails = document.createElement('ul');
+    thumbnails.className = 'thumbnails';
+    thumbnails.id = 'thumbnails';
+
+    var thumbnailsContainer = document.createElement('div');
+    thumbnailsContainer.className = 'content';
+    thumbnailsContainer.appendChild(thumbnails);
+    this.container.appendChild(thumbnailsContainer);
 
     // For each photo, generate a thumbnail and show on page
-    for (i; i < this.photos.length; i++) {
+    for (var i = 0; i < this.photos.length; i++) {
       var currentPhoto = this.photos[i];
       var thumbURL = Flickr.buildThumbnailURL(currentPhoto);
       var orientation = this.checkOrientation(currentPhoto);
@@ -187,24 +188,9 @@
       li.appendChild(link);
 
       // Append to a gallery container
-      this.thumbnails.appendChild(li);
+      thumbnails.appendChild(li);
     }
   };
-
-  // Set up content block
-  Gallery.prototype.setupContainer = function() {
-    // Thumbnails holder
-    var thumbnails = document.createElement('ul');
-    thumbnails.className = 'thumbnails';
-    thumbnails.id = 'thumbnails';
-
-    // Content block for holding content
-    var contentContainer = document.createElement('div');
-    contentContainer.className = 'content';
-    contentContainer.id = 'content';
-    contentContainer.appendChild(thumbnails);
-    this.container.appendChild(contentContainer);
-  }
 
   window.Gallery = Gallery;
 })(document, window);

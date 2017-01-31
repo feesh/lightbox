@@ -9,14 +9,13 @@
   var apiKey = 'e0bc054b3d94fd9c1f91199ef47ae646';
 
   // API call for Flickr
-  function callFlickr(processData, container, page = 1) {
+  function callFlickr(processData, container) {
     var searchText = 'nobannowall';
     var apiMethod = 'flickr.photos.search';
     var extras = 'url_m,owner_name,views,geo,date_taken';
     var perPage = 33;
-    var currentPage = page;
 
-    var url = `https://api.flickr.com/services/rest/?&method=${apiMethod}&api_key=${apiKey}&text=${searchText}&per_page=${perPage}&page=${currentPage}&format=json&nojsoncallback=1&extras=${extras}`;
+    var url = `https://api.flickr.com/services/rest/?&method=${apiMethod}&api_key=${apiKey}&text=${searchText}&per_page=${perPage}&format=json&nojsoncallback=1&extras=${extras}`;
 
     var request = new XMLHttpRequest();
     request.open('GET', url, true);
