@@ -8,6 +8,7 @@
   'use strict';
 
   var gallery;
+  var currentPage = 1;
 
   // Event listeners for the lightbox
   function setupLightboxNav() {
@@ -80,7 +81,14 @@
 
   // Once data is received, set up gallery
   function processData(data, container) {
-    setupGallery(data, container);
+    // set up gallery on first call, otherwise append
+    console.log(currentPage);
+    if (currentPage < 2) {
+      setupGallery(data, container);
+    } else {
+      console.log(data);
+      appendImages(data);
+    }
   }
 
   // Display error message
@@ -120,9 +128,10 @@
     Flickr.callFlickr(processData, container);
 
     // "Infinite scroll?"
-    window.onscroll = function(ev) {
+    window.onscroll = function(event) {
       if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
         // Load more photos once scrolled to the bottom
+        currentPage++;
         gallery.currentPage++;
         Flickr.callFlickr(appendImages, container, gallery.currentPage);
       }

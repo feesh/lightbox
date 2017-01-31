@@ -14,17 +14,21 @@
     this.currentPage = 1;
     this.container = element;
     this.photos = photos;
+    this.photoURLs = [];
 
-    // Get content div reference
-    this.setupContainer();
-    this.thumbnails = document.getElementById('thumbnails');
+    // Only run initial set up once
+    if (this.currentPage < 2) {
+      // Get content div reference
+      this.setupContainer();
+      this.thumbnails = document.getElementById('thumbnails');
+
+      // Attach containers for overlay and lightbox
+      this.setupOverlay();
+      this.setupLightbox();
+    }
 
     // Initialize by showing the thumbs
     this.setupThumbnails();
-
-    // Attach containers for overlay and lightbox
-    this.setupOverlay();
-    this.setupLightbox();
   }
 
   // Set up overlay
@@ -93,11 +97,11 @@
     lightbox.classList.add('visible');
     overlay.classList.add('visible');
 
-    if (index >= 0 && index < this.photos.length) {
+    if (index >= 0 && index < this.photoURLs.length) {
       this.currentIndex = index;
 
       var container = document.getElementById('currentphoto');
-      var currentPhoto = this.photos[this.currentIndex];
+      var currentPhoto = this.photoURLs[this.currentIndex];
       var imgURL = Flickr.buildPhotoURL(currentPhoto);
       var orientation = this.checkOrientation(currentPhoto);
 
@@ -168,6 +172,7 @@
     for (i; i < this.photos.length; i++) {
       var currentPhoto = this.photos[i];
       var thumbURL = Flickr.buildThumbnailURL(currentPhoto);
+      var photoURL = Flickr.buildPhotoURL(currentPhoto);
       var orientation = this.checkOrientation(currentPhoto);
       var img, link, li;
 
@@ -183,8 +188,12 @@
       // Set up li
       li = document.createElement('li');
       li.className = `thumbnail ${orientation}`;
+      li.dataset.src = photoURL;
       li.addEventListener('click', handleClick(i, this));
       li.appendChild(link);
+
+      // Add to array of URLs
+      this.photoURLs.push(currentPhoto);
 
       // Append to a gallery container
       this.thumbnails.appendChild(li);
