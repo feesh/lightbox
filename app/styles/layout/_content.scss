@@ -16,4 +16,8 @@
 
 .content {
   padding: 0.75rem 2rem;
+
+  #ui-gallery > & {
+    min-height: 500px;
+  }
 }

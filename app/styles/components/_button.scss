@@ -1,0 +1,27 @@
+// General button styles
+
+.btn {
+  display: inline-block;
+  padding: 1.2em 3em;
+
+  background-color: rgba($white, 0);
+  border: 1px solid $white;
+  border-radius: $border-radius;
+  color: $white;
+  cursor: pointer;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transition: $tx-colors;
+
+  &:active {
+    box-shadow: inset 0 1px rgba($black, .2);
+    transform: translateY(1px);
+  }
+
+  &:hover {
+    background-color: rgba($white, 1);
+    color: $blue-medium;
+    transition: $tx-colors;
+  }
+}

@@ -9,15 +9,17 @@ $icon-font-path: '../fonts/';
 
 
 // Import partials
-@import 'global/variables';
 @import 'global/mixins';
+@import 'global/variables';
 
 @import 'layout/base';
 @import 'layout/content';
 @import 'layout/header';
 
+@import 'components/button';
+@import 'components/error';
 @import 'components/gallery';
-@import 'components/thumbnail';
-@import 'components/modal';
 @import 'components/lightbox-photo';
+@import 'components/modal';
 @import 'components/overlay';
+@import 'components/thumbnail';
