@@ -20,17 +20,24 @@
 
     request.onload = function () {
       if (this.status >= 200 && this.status < 400) {
-        // Success!
         var data = JSON.parse(this.response);
-
-        Main.processData(data, container);
+        if (data.stat === 'ok') {
+          // Success!
+          Main.processData(data, container);
+        } else {
+          // We reached the server, but it returned an API error
+          Main.displayError(container);
+        }
       } else {
-        // We reached our target server, but it returned an error
+        // We reached the server, but it returned an error
+        Main.displayError(container);
       }
     };
 
     request.onerror = function () {
-      // There was a connection error of some sort
+      // There was a connection error
+      Main.displayError(container);
+      console.log(this.status);
     };
 
     request.send();
