@@ -22,7 +22,6 @@
     request.onload = function () {
       if (this.status >= 200 && this.status < 400) {
         var data = JSON.parse(this.response);
-        console.log(data);
         if (data.stat === 'ok') {
           // Success!
           Main.processData(data, container);
@@ -39,7 +38,6 @@
     request.onerror = function () {
       // There was a connection error
       Main.displayError(container);
-      console.log(this.status);
     };
 
     request.send();
