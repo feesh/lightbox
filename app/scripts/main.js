@@ -78,6 +78,38 @@
     setupGallery(data, container);
   }
 
+  // Display error message
+  function displayError(target) {
+    var container = document.getElementById(target);
+
+    // Heading for error message
+    var errorMsg = document.createElement('h3');
+    errorMsg.innerHTML = 'Unfortunately, no photos are available at this time, please try again.';
+    errorMsg.className = 'err-message';
+
+    // Image for error page
+    var errorImg = document.createElement('img');
+    errorImg.src = 'https://media3.giphy.com/media/MJTOHmGiGPHgI/200.gif#6';
+    errorImg.alt = 'Beemo search fail';
+    errorImg.className = 'err-img';
+
+    // Retry button
+    var retryBtn = document.createElement('a');
+    retryBtn.href = '/';
+    retryBtn.alt = 'Click here to reload the gallery';
+    retryBtn.title = 'Click here to reload the gallery';
+    retryBtn.innerHTML = 'Try again';
+    retryBtn.className = 'btn err-btn';
+
+    // Content container
+    var contentContainer = document.createElement('div');
+    contentContainer.className = 'content error';
+    contentContainer.appendChild(errorImg);
+    contentContainer.appendChild(errorMsg);
+    contentContainer.appendChild(retryBtn);
+    container.appendChild(contentContainer);
+  }
+
   // Initialize page with query
   function init(container) {
     Flickr.callFlickr(processData, container);
@@ -85,7 +117,8 @@
 
   window.Main = {
     init: init,
-    processData: processData
+    processData: processData,
+    displayError: displayError
   };
 })(document, window);
 
