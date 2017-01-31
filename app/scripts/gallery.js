@@ -1,4 +1,5 @@
 // Gallery functions
+// Author: Trish Ang / github.com/feesh
 /* global Flickr:true */
 
 (function(document, window) {
@@ -94,7 +95,7 @@
 
       var container = document.getElementById('currentphoto');
       var currentPhoto = this.photos[this.currentIndex];
-      var imgURL = Flickr.buildLargePhotoURL(currentPhoto);
+      var imgURL = Flickr.buildPhotoURL(currentPhoto);
       var orientation = this.checkOrientation(currentPhoto);
 
       // Display current image in display area

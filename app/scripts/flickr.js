@@ -1,4 +1,5 @@
 // Flickr utilities
+// Author: Trish Ang / github.com/feesh
 /* global Main:true */
 
 (function (document, window) {
@@ -45,20 +46,14 @@
   }
 
   function buildPhotoURL(photo) {
-    // Photo format: https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg
-    return 'https://farm' + photo.farm + '.staticflickr.com/' + photo.server + '/' + photo.id + '_' + photo.secret + '.jpg';
-  }
-
-  function buildLargePhotoURL(photo) {
-    // Large photo format: https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}_b.jpg
-    return 'https://farm' + photo.farm + '.staticflickr.com/' + photo.server + '/' + photo.id + '_' + photo.secret + '_b.jpg';
+    // Photo format: https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}_c.jpg
+    return 'https://farm' + photo.farm + '.staticflickr.com/' + photo.server + '/' + photo.id + '_' + photo.secret + '_c.jpg';
   }
 
   window.Flickr = {
     callFlickr: callFlickr,
     buildThumbnailURL: buildThumbnailURL,
-    buildPhotoURL: buildPhotoURL,
-    buildLargePhotoURL: buildLargePhotoURL
+    buildPhotoURL: buildPhotoURL
   };
 })(document, window);
 //# sourceMappingURL=flickr.js.map

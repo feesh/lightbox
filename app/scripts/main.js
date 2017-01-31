@@ -1,4 +1,5 @@
 // Main JS for Lightbox gallery
+// Author: Trish Ang / github.com/feesh
 /* global Main:true */
 /* global Flickr:true */
 /* global Gallery:true */
