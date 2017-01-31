@@ -10,6 +10,15 @@ An example gallery and lightbox using vanilla Javascript and Sass. This demo gen
 - View an image larger by clicking on a thumbnail.
 - Navigate to next and previous images in the set.
 
+### Future upgrades
+Although this was a fun project to start on, given the time constraints there are definitely additional features I'd love to continue implementing, including:
+- [ ] Tests (also largely due to the no library constraint).
+- [ ] Better error handling in case we get a set of images back, but the image server farms are down and no actual image is displayed.
+- [ ] Improved animations, between opening the lightbox, and also when navigating.
+- [ ] Dynamic search, change the search query to load a new set.
+- [ ] Lazy loading for images.
+- [ ] Infinite scroll to continue pulling new pages of images.
+
 ### Technologies used
 - Javascript
 - Sass & PostCSS
