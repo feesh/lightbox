@@ -73,6 +73,11 @@
     setupKeyCheck();
   }
 
+  // If adding more pages
+  function appendImages(data) {
+    gallery.setupThumbnails(data);
+  }
+
   // Once data is received, set up gallery
   function processData(data, container) {
     setupGallery(data, container);
@@ -113,6 +118,15 @@
   // Initialize page with query
   function init(container) {
     Flickr.callFlickr(processData, container);
+
+    // "Infinite scroll?"
+    window.onscroll = function(ev) {
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 50) {
+        // Load more photos once scrolled to the bottom
+        gallery.currentPage++;
+        Flickr.callFlickr(appendImages, container, gallery.currentPage);
+      }
+    };
   }
 
   window.Main = {
@@ -123,3 +137,4 @@
 })(document, window);
 
 Main.init('ui-gallery');
+
