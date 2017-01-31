@@ -5,6 +5,13 @@ An example gallery and lightbox using vanilla Javascript and Sass. This demo gen
 
 ![Screenshot of demo](http://static.trishang.com/sl/screenshot-lightbox.jpg "Screenshot of lightbox demo")
 
+### 👉 Get started
+Testing this out locally? This repo is based on the Yeoman Webapp boilerplate ([documentation here](https://github.com/yeoman/generator-webapp/blob/master/docs/README.md)). Start here to get set up:
+1. Download or clone the repo.
+2. Install dependencies. Run `bower install` and `npm install`.
+3. To preview and watch changes, run `gulp serve`.
+4. To build for distribution, run `gulp`. Files will be packaged to the `/dist` folder.
+
 ### 🌟 Features
 - Loads a set of photos through Flickr search API.
 - View an image larger by clicking on a thumbnail.
