@@ -1,5 +1,5 @@
 # Gallery lightbox
-An example gallery and lightbox using vanilla Javascript and Sass.
+An example gallery and lightbox using vanilla Javascript and Sass. This demo generates a gallery using the Flickr API, in particular their search query, to return a set of photos to display. Photos can be selected to view in lightbox mode, and you can navigate backwards and forwards through the set.
 
 [View lightbox online.](http://static.trishang.com/sl/)
 
@@ -16,3 +16,4 @@ An example gallery and lightbox using vanilla Javascript and Sass.
 - Gulp
 - Babel
 - Yeoman Gulp webapp boilerplate
+- Tested across Chrome, Safari, Firefox, and IE
