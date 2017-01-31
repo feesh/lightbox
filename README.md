@@ -12,6 +12,8 @@ Testing this out locally? This repo is based on the Yeoman Webapp boilerplate ([
 3. To preview and watch changes, run `gulp serve`.
 4. To build for distribution, run `gulp`. Files will be packaged to the `/dist` folder.
 
+(or) To view statically, open `dist/index.html` in a browser.
+
 ### 🌟 Features
 - Loads a set of photos through Flickr search API.
 - View an image larger by clicking on a thumbnail.
