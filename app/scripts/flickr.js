@@ -12,8 +12,9 @@
     var searchText = 'nobannowall';
     var apiMethod = 'flickr.photos.search';
     var extras = 'url_m,owner_name,views,geo,date_taken';
+    var perPage = 33;
 
-    var url = `https://api.flickr.com/services/rest/?&method=${apiMethod}&api_key=${apiKey}&text=${searchText}&format=json&nojsoncallback=1&extras=${extras}`;
+    var url = `https://api.flickr.com/services/rest/?&method=${apiMethod}&api_key=${apiKey}&text=${searchText}&per_page=${perPage}&format=json&nojsoncallback=1&extras=${extras}`;
 
     var request = new XMLHttpRequest();
     request.open('GET', url, true);
@@ -21,6 +22,7 @@
     request.onload = function () {
       if (this.status >= 200 && this.status < 400) {
         var data = JSON.parse(this.response);
+        console.log(data);
         if (data.stat === 'ok') {
           // Success!
           Main.processData(data, container);
