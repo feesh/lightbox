@@ -3,7 +3,7 @@ An example gallery and lightbox using vanilla Javascript and Sass.
 
 [View lightbox online.](http://static.trishang.com/sl/)
 
-![Screenshot of demo](http://static.trishang.com/sl/screenshot-lightbox.png "Screenshot of lightbox demo")
+![Screenshot of demo](http://static.trishang.com/sl/screenshot-lightbox.jpg "Screenshot of lightbox demo")
 
 ### Features
 - Loads a set of photos through Flickr search API.
