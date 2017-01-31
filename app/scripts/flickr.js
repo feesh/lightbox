@@ -22,12 +22,10 @@
       if (this.status >= 200 && this.status < 400) {
         // Success!
         var data = JSON.parse(this.response);
-        console.log(data);
 
         Main.processData(data, container);
       } else {
         // We reached our target server, but it returned an error
-        console.log('error: ');
       }
     };
 
@@ -42,12 +40,12 @@
   // Docs: https://www.flickr.com/services/api/misc.urls.html
   function buildThumbnailURL(photo) {
     // Thumbnail format: https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg
-    return 'https://farm' + photo.farm + '.staticflickr.com/' + photo.server + '/' + photo.id + '_' + photo.secret + '.jpg';
+    return `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}.jpg`;
   }
 
   function buildPhotoURL(photo) {
     // Photo format: https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}_c.jpg
-    return 'https://farm' + photo.farm + '.staticflickr.com/' + photo.server + '/' + photo.id + '_' + photo.secret + '_c.jpg';
+    return `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_c.jpg`;
   }
 
   window.Flickr = {

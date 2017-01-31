@@ -90,8 +90,6 @@
 
     if (index >= 0 && index < this.photos.length) {
       this.currentIndex = index;
-      console.log(this.currentIndex);
-      console.log(this.photos[this.currentIndex]);
 
       var container = document.getElementById('currentphoto');
       var currentPhoto = this.photos[this.currentIndex];

@@ -20,28 +20,24 @@
     // Activate previous button
     prevBtn.addEventListener('click', function(event) {
       event.preventDefault();
-      console.log('toggle prev');
       gallery.showPrevious.bind(gallery)();
     });
 
     // Activate next button
     nextBtn.addEventListener('click', function(event) {
       event.preventDefault();
-      console.log('toggle next');
       gallery.showNext.bind(gallery)();
     });
 
     // Activate close button
     closeBtn.addEventListener('click', function(event) {
       event.preventDefault();
-      console.log('toggle close');
       gallery.closeLightbox();
     });
 
     // Close lightbox when clicking on the overlay also
     overlay.addEventListener('click', function(event) {
       event.preventDefault();
-      console.log('toggle close');
       gallery.closeLightbox();
     });
   }
@@ -50,9 +46,6 @@
   function setupKeyCheck() {
     function checkKey(e) {
       e = e || window.event;
-
-      console.log('wat');
-      console.log(e.keyCode);
 
       if (e.keyCode === 37) {
         // left arrow toggle previous
