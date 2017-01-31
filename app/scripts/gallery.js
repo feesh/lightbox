@@ -97,9 +97,7 @@
       var orientation = this.checkOrientation(currentPhoto);
 
       // Display current image in display area
-      container.innerHTML = '<figure class="' + orientation + '"><img src="' +
-        imgURL + '" /><figcaption>' + currentPhoto.title +
-        '</figcaption></figure>';
+      container.innerHTML = `<figure class="${orientation}"><img src="${imgURL}"/><figcaption>${currentPhoto.title}</figcaption></figure>`;
     }
   };
 
@@ -185,7 +183,7 @@
 
       // Set up li
       li = document.createElement('li');
-      li.className = 'thumbnail ' + orientation;
+      li.className = `thumbnail ${orientation}`;
       li.addEventListener('click', handleClick(i, this));
       li.appendChild(link);
 
