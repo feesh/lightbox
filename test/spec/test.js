@@ -77,18 +77,13 @@
         var secondImage = document.querySelector('.lightbox-photo img');
         expect(firstImage.src).not.equal(secondImage.src);
       });
-      it('should show the next image when right key pressed', function () {
-        // Click next link and check for a different image
+      it('should show the prev image when left arrow clicked', function () {
+        // Click prev link and check for a different image
+        var prevLink = document.getElementById('toggleprev');
         var firstImage = document.querySelector('.lightbox-photo img');
 
         // Navigate
-        var searchBox = document.getElementById('searchbox');
-        var event = new KeyboardEvent('press right', KeyboardEventInit);
-        event.which = 27;
-        searchBox.dispatchEvent(event);
-
-        console.log(event);
-
+        prevLink.click();
         var secondImage = document.querySelector('.lightbox-photo img');
         expect(firstImage.src).not.equal(secondImage.src);
       });
@@ -132,6 +127,10 @@
       it('should not have more than one content container', function () {
         // Check that the old content div was cleared out
         assert.operator(document.querySelectorAll('#content').length, '<', 2);
+      });
+      it('should not have more than one header container', function () {
+        // Check that no new header div was created
+        assert.operator(document.querySelectorAll('#header').length, '<', 2);
       });
     });
   });
