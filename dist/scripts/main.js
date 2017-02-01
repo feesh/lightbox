@@ -24,6 +24,14 @@
     this.setupLightbox();
   }
 
+  // Reset gallery content
+  Gallery.prototype.resetGallery = function () {
+    var content = document.getElementById('content');
+    lightbox.parentNode.removeChild(lightbox);
+    overlay.parentNode.removeChild(overlay);
+    content.parentNode.removeChild(content);
+  };
+
   // Set up overlay
   Gallery.prototype.setupOverlay = function () {
     overlay = document.createElement('div');
@@ -164,6 +172,7 @@
 
     var thumbnailsContainer = document.createElement('div');
     thumbnailsContainer.className = 'content';
+    thumbnailsContainer.id = 'content';
     thumbnailsContainer.appendChild(thumbnails);
     this.container.appendChild(thumbnailsContainer);
 
@@ -210,8 +219,8 @@
   var apiKey = 'e0bc054b3d94fd9c1f91199ef47ae646';
 
   // API call for Flickr
-  function callFlickr(processData, container) {
-    var searchText = 'nobannowall';
+  function callFlickr(processData, search, container) {
+    var searchText = search;
     var apiMethod = 'flickr.photos.search';
     var extras = 'url_m,owner_name,views,geo,date_taken';
     var perPage = 33;
@@ -292,6 +301,9 @@
   'use strict';
 
   var gallery;
+  var galleryContainer;
+  var searchBox = document.getElementById('searchbox');
+  var searchBtn = document.getElementById('searchbtn');
 
   // Event listeners for the lightbox
   function setupLightboxNav() {
@@ -340,6 +352,10 @@
       } else if (e.keyCode === 27) {
         // esc key exit lightbox
         gallery.closeLightbox();
+      } else if (e.keyCode === 13) {
+        // enter key
+        e.preventDefault();
+        newSearch(galleryContainer);
       }
     }
 
@@ -394,9 +410,31 @@
     container.appendChild(contentContainer);
   }
 
+  // Trigger a new search
+  function newSearch(container) {
+    // Delete existing thumbs
+    gallery.resetGallery();
+
+    // Submit new search
+    var searchText = searchBox.value;
+    Flickr.callFlickr(processData, searchText, container);
+
+    // Update title
+    var title = document.getElementById('searchtitle');
+    title.innerHTML = searchText;
+  }
+
   // Initialize page with query
   function init(container) {
-    Flickr.callFlickr(processData, container);
+    galleryContainer = container;
+
+    Flickr.callFlickr(processData, 'nobannowall', galleryContainer);
+
+    // Add function to activate search box
+    searchBtn.addEventListener('click', function (event) {
+      event.preventDefault();
+      newSearch(galleryContainer);
+    });
   }
 
   window.Main = {
