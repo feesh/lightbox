@@ -74,11 +74,11 @@
   }
 
   // Add header content to top of gallery
-  function setupHeader() {
+  function setupHeader(target) {
     // Title
     var title = document.createElement('h1');
     title.id = 'searchtitle';
-    title.text = searchText;
+    title.innerHTML = searchText;
 
     // Search box
     searchBox = document.createElement('input');
@@ -112,15 +112,25 @@
 
     var header = document.createElement('header');
     header.appendChild(content);
+    header.id = 'header';
+
+    var container = document.getElementById(target);
+    target.appendChild(header);
   }
 
   // When data is available, set up the gallery
   function setupGallery(data, target) {
     var container = document.getElementById(target);
+    var header = document.getElementById('header');
+
+    // Only set up the header the first time
+    if (!header) {
+      setupHeader(container);
+    }
+
     gallery = new Gallery(data.photos.photo, container);
 
     // Set up handlers
-    setupHeader();
     setupLightboxNav();
     setupKeyCheck();
   }
