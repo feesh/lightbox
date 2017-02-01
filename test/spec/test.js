@@ -57,14 +57,35 @@
     });
 
     describe('New search functionality', function () {
-      it('should return nothing if the searchbox is empty and submitted', function () {
+      console.log(document.getElementById('test-gallery'));
+
+      it('should return nothing if the searchbox is empty and submitted', function (done) {
         // Click the search button and check contents of #content
+
+        var searchBtn = document.getElementById('searchbtn');
+        var searchBox = document.getElementById('searchbox');
+
+        searchBox.value = '';
+        searchBtn.click();
+        assert.equal(document.querySelectorAll('#thumbnails li').length, 0);
+        done();
       });
-      it('should update the title after a search', function () {
+      it('should update the title after a search', function (done) {
         // Check that title text equals search text after submitting
+        var newSearchText = 'shark week';
+        var searchTitle = document.getElementById('searchtitle');
+        var searchBtn = document.getElementById('searchbtn');
+        var searchBox = document.getElementById('searchbox');
+
+        searchBox.value = newSearchText;
+        searchBtn.click();
+
+        assert.equal(searchTitle.innerHTML, newSearchText);
+        done();
       });
       it('should load photos after submitting search', function () {
         // Check that content is not empty, although how to check if it's not the old array?
+        assert.operator(document.querySelectorAll('#thumbnails li').length, '>', 0);
       });
       it('should not have more than one content container', function () {
         // Check that the old content div was cleared out
