@@ -179,7 +179,7 @@
       var currentPhoto = this.photos[i];
       var thumbURL = Flickr.buildThumbnailURL(currentPhoto);
       var orientation = this.checkOrientation(currentPhoto);
-      var img, link, li;
+      var img, link, li, width;
 
       // Set up image
       img = document.createElement('img');
@@ -188,6 +188,13 @@
       // Set up link for triggering show photo
       link = document.createElement('a');
       link.href = img.src;
+
+      // Crop photo if too tall
+      if (orientation === 'portrait') {
+        width = currentPhoto.width_m;
+        link.style.maxHeight = `${width}px`;
+      }
+
       link.appendChild(img);
 
       // Set up li
