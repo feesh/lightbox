@@ -113,6 +113,22 @@
   // Initialize page with query
   function init(container) {
     Flickr.callFlickr(processData, 'nobannowall', container);
+
+    // Add function to activate search box
+    var searchBox = document.getElementById('searchbox');
+    var searchBtn = document.getElementById('searchbtn');
+
+    // Activate previous button
+    searchBtn.addEventListener('click', function(event) {
+      event.preventDefault();
+
+      // Delete existing thumbs
+      gallery.resetGallery();
+
+      // Submit new search
+      var searchText = searchBox.value;
+      Flickr.callFlickr(processData, searchText, container);
+    });
   }
 
   window.Main = {
