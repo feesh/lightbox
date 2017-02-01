@@ -9,12 +9,10 @@
     });
 
     describe('Gallery container upon initialization', function () {
-
       it('initializes the gallery', function(done){
         Main.init('test-gallery');
         done();
       });
-
       it('should have a header', function () {
         assert.ok(document.getElementById('header'));
       });
@@ -26,6 +24,9 @@
       });
       it('should have an overlay container', function () {
         assert.ok(document.getElementById('overlay'));
+      });
+      it('should not have more than one content container', function () {
+        assert.operator(document.querySelectorAll('#content').length, '<', 2);
       });
     });
   });
