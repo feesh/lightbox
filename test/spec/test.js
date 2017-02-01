@@ -83,8 +83,7 @@
 
         // Navigate
         var searchBox = document.getElementById('searchbox');
-        var event = document.createEvent('Keypress');
-        event.initEvent('change', true, false);
+        var event = new KeyboardEvent('press right', KeyboardEventInit);
         event.which = 27;
         searchBox.dispatchEvent(event);
 
@@ -97,8 +96,8 @@
         // Click close button then check for 'visible' on overlay and lightbox
         var closeBtn = document.getElementById('toggleclose');
         closeBtn.click();
-        assert.not.equal(document.getElementById('lightbox').className, 'modal visible');
-        assert.not.equal(document.getElementById('overlay').className, 'overlay visible');
+        expect(document.getElementById('lightbox').className).not.equal('modal visible');
+        expect(document.getElementById('overlay').className).not.equal('overlay visible');
       });
     });
 
