@@ -128,6 +128,10 @@
       // Submit new search
       var searchText = searchBox.value;
       Flickr.callFlickr(processData, searchText, container);
+
+      // Update title
+      var title = document.getElementById('searchtitle');
+      title.innerHTML = searchText;
     });
   }
 
