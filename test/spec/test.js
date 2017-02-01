@@ -41,13 +41,18 @@
 
     describe('Lightbox interaction', function () {
       it('should have selectable thumbnails', function () {
-        // Find ul.thumbnails > li > a
+        // Find ul#thumbnails > li:first-child > a
+        var testLink = document.querySelector('#thumbnails li:first-child a');
+        testLink.click();
+        assert.ok(testLink);
       });
       it('should show the lightbox when clicked', function () {
         // Click thumbnail and check for visible class on lightbox
+        assert.equal(document.getElementById('lightbox').className, 'modal visible');
       });
       it('should show the overlay when clicked', function () {
         // Click thumbnail and check for visible class on overlay
+        assert.equal(document.getElementById('overlay').className, 'overlay visible');
       });
     });
 
