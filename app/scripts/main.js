@@ -8,6 +8,7 @@
   'use strict';
 
   var gallery;
+  var galleryContainer;
   var searchBox = document.getElementById('searchbox');
   var searchBtn = document.getElementById('searchbtn');
 
@@ -61,7 +62,7 @@
       } else if (e.keyCode === 13) {
         // enter key
         e.preventDefault();
-        newSearch('ui-gallery');
+        newSearch(galleryContainer);
       }
     }
 
@@ -132,12 +133,14 @@
 
   // Initialize page with query
   function init(container) {
-    Flickr.callFlickr(processData, 'nobannowall', container);
+    galleryContainer = container;
+
+    Flickr.callFlickr(processData, 'nobannowall', galleryContainer);
 
     // Add function to activate search box
     searchBtn.addEventListener('click', function(event) {
       event.preventDefault();
-      newSearch(container);
+      newSearch(galleryContainer);
     });
   }
 
