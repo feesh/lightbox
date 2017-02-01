@@ -1,6 +1,5 @@
 // Main JS for Lightbox gallery
 // Author: Trish Ang / github.com/feesh
-/* global Main:true */
 /* global Flickr:true */
 /* global Gallery:true */
 
@@ -120,12 +119,8 @@
       header.appendChild(content);
       header.id = 'header';
 
-      var container = document.getElementById(target);
-
       target.appendChild(header);
     }
-
-
   }
 
   // When data is available, set up the gallery
@@ -145,6 +140,21 @@
     setupGallery(data, container);
   }
 
+  // Trigger a new search
+  function newSearch(container) {
+    // Delete existing thumbs
+    gallery.resetGallery();
+
+    // Submit new search
+    var newSearchText = searchBox.value;
+    Flickr.callFlickr(processData, newSearchText, container);
+    searchBox.value = '';
+
+    // Update title
+    var title = document.getElementById('searchtitle');
+    title.innerHTML = newSearchText;
+  }
+
   // Display error message
   function displayError(target) {
     var container = document.getElementById(target);
@@ -153,7 +163,7 @@
     var content = document.getElementById('content');
     if (content) {
       content.parentNode.removeChild(content);
-    };
+    }
 
     // Set up header though
     setupHeader(container);
@@ -185,21 +195,6 @@
     contentContainer.appendChild(errorMsg);
     contentContainer.appendChild(retryBtn);
     container.appendChild(contentContainer);
-  }
-
-  // Trigger a new search
-  function newSearch(container) {
-    // Delete existing thumbs
-    gallery.resetGallery();
-
-    // Submit new search
-    var newSearchText = searchBox.value;
-    Flickr.callFlickr(processData, newSearchText, container);
-    searchBox.value = '';
-
-    // Update title
-    var title = document.getElementById('searchtitle');
-    title.innerHTML = newSearchText;
   }
 
   // Initialize page with query
