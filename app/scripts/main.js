@@ -112,7 +112,7 @@
 
   // Initialize page with query
   function init(container) {
-    Flickr.callFlickr(processData, container);
+    Flickr.callFlickr(processData, 'nobannowall', container);
   }
 
   window.Main = {

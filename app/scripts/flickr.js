@@ -8,8 +8,8 @@
   var apiKey = 'e0bc054b3d94fd9c1f91199ef47ae646';
 
   // API call for Flickr
-  function callFlickr(processData, container) {
-    var searchText = 'nobannowall';
+  function callFlickr(processData, search, container) {
+    var searchText = search;
     var apiMethod = 'flickr.photos.search';
     var extras = 'url_m,owner_name,views,geo,date_taken';
     var perPage = 33;
