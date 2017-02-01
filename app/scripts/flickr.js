@@ -1,7 +1,6 @@
 // Flickr utilities
 // Author: Trish Ang / github.com/feesh
 /* global Main:true */
-/* global Gallery:true */
 
 (function (document, window) {
   'use strict';
@@ -56,8 +55,7 @@
   function preloadImage(url) {
     var image = new Image();
     image.src = url;
-  };
-
+  }
 
   // Utilities for working with Flickr image URLs
   // Docs: https://www.flickr.com/services/api/misc.urls.html
