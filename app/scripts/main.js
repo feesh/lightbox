@@ -61,8 +61,10 @@
         gallery.closeLightbox();
       } else if (e.keyCode === 13) {
         // enter key
-        e.preventDefault();
-        newSearch(galleryContainer);
+        if (searchBox === document.activeElement) {
+          e.preventDefault();
+          newSearch(galleryContainer);
+        }
       }
     }
 
