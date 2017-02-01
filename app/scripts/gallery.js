@@ -22,6 +22,13 @@
     this.setupLightbox();
   }
 
+  // Reset gallery content
+  Gallery.prototype.resetGallery = function() {
+    lightbox.parentNode.removeChild(lightbox);
+    overlay.parentNode.removeChild(overlay);
+    content.parentNode.removeChild(content);
+  };
+
   // Set up overlay
   Gallery.prototype.setupOverlay = function() {
     overlay = document.createElement('div');
@@ -162,6 +169,7 @@
 
     var thumbnailsContainer = document.createElement('div');
     thumbnailsContainer.className = 'content';
+    thumbnailsContainer.id = 'content';
     thumbnailsContainer.appendChild(thumbnails);
     this.container.appendChild(thumbnailsContainer);
 
