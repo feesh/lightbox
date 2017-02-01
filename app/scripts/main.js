@@ -115,7 +115,6 @@
     header.id = 'header';
 
     var container = document.getElementById(target);
-    console.log(target);
 
     target.appendChild(header);
 
@@ -146,6 +145,12 @@
   // Display error message
   function displayError(target) {
     var container = document.getElementById(target);
+
+    // First reset #content if it's already there
+    var content = document.getElementById('content');
+    if (content) {
+      content.parentNode.removeChild(content);
+    };
 
     // Heading for error message
     var errorMsg = document.createElement('h3');
