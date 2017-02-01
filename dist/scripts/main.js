@@ -99,7 +99,7 @@
       var orientation = this.checkOrientation(currentPhoto);
 
       // Display current image in display area
-      container.innerHTML = '<figure class="' + orientation + '"><img src="' + imgURL + '"/><figcaption>' + currentPhoto.title + '</figcaption></figure>';
+      container.innerHTML = '<figure class="' + orientation + '"><img src="' + imgURL + '" /><figcaption>' + currentPhoto.title + '</figcaption></figure>';
     }
   };
 
@@ -226,6 +226,14 @@
         var data = JSON.parse(this.response);
         if (data.stat === 'ok') {
           // Success!
+          // Preload images as soon as we get a response
+          for (var i = 0; i < data.photos.photo.length; i++) {
+            var thumbURL = buildThumbnailURL(data.photos.photo[i]);
+            var photoURL = buildPhotoURL(data.photos.photo[i]);
+            preloadImage(thumbURL);
+            preloadImage(photoURL);
+          }
+
           Main.processData(data, container);
         } else {
           // We reached the server, but it returned an API error
@@ -243,6 +251,12 @@
     };
 
     request.send();
+  }
+
+  // Preload images to speed up transitions
+  function preloadImage(url) {
+    var image = new Image();
+    image.src = url;
   }
 
   // Utilities for working with Flickr image URLs
