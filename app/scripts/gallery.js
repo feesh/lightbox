@@ -18,15 +18,19 @@
     this.setupThumbnails();
 
     // Attach containers for overlay and lightbox
-    this.setupOverlay();
-    this.setupLightbox();
+    // But only the first time
+    if (!lightbox) {
+      this.setupLightbox();
+    }
+
+    if (!overlay) {
+      this.setupOverlay();
+    }
   }
 
   // Reset gallery content
   Gallery.prototype.resetGallery = function() {
     var content = document.getElementById('content');
-    lightbox.parentNode.removeChild(lightbox);
-    overlay.parentNode.removeChild(overlay);
     content.parentNode.removeChild(content);
   };
 
