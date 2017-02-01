@@ -7,10 +7,11 @@ An example gallery and lightbox using vanilla Javascript and Sass. This demo gen
 
 ### 👉 Get started
 Testing this out locally? This repo is based on the Yeoman Webapp boilerplate ([documentation here](https://github.com/yeoman/generator-webapp/blob/master/docs/README.md)). Start here to get set up:
+
 1. Download or clone the repo.
-2. Install dependencies. Run `bower install` and `npm install`.
-3. To preview and watch changes, run `gulp serve`.
-4. To build for distribution, run `gulp`. Files will be packaged to the `/dist` folder.
+1. Install dependencies. Run `bower install` and `npm install`.
+1. To preview and watch changes, run `gulp serve`.
+1. To build for distribution, run `gulp`. Files will be packaged to the `/dist` folder.
 
 (or) To view statically, open `dist/index.html` in a browser.
 
