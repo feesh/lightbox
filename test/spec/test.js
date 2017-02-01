@@ -40,11 +40,12 @@
     });
 
     describe('Lightbox interaction', function () {
-      it('should have selectable thumbnails', function () {
+      it('should have selectable thumbnails', function (done) {
         // Find ul#thumbnails > li:first-child > a
         var testLink = document.querySelector('#thumbnails li:first-child a');
         testLink.click();
         assert.ok(testLink);
+        done();
       });
       it('should show the lightbox when clicked', function () {
         // Click thumbnail and check for visible class on lightbox
@@ -54,6 +55,33 @@
         // Click thumbnail and check for visible class on overlay
         assert.equal(document.getElementById('overlay').className, 'overlay visible');
       });
+      it('should show the next image when right arrow clicked', function () {
+        // Click next link and check for a different image
+        var nextLink = document.getElementById('togglenext');
+        var firstImage = document.querySelector('.lightbox-photo img');
+
+        // Navigate
+        nextLink.click();
+        var secondImage = document.querySelector('.lightbox-photo img');
+        assert.not.equal(firstImage, secondImage);
+      });
+      it('should show the next image when right key pressed', function () {
+        // Click next link and check for a different image
+        var nextLink = document.getElementById('togglenext');
+        var firstImage = document.querySelector('.lightbox-photo img');
+
+        // Navigate
+        nextLink.click();
+        var secondImage = document.querySelector('.lightbox-photo img');
+        assert.not.equal(firstImage, secondImage);
+      });
+      it('should hide overlay and lightbox when close is clicked', function () {
+        // Click close button then check for 'visible' on overlay and lightbox
+        var closeBtn = document.getElementById('toggleclose');
+        closeBtn.click();
+        assert.not.equal(document.getElementById('lightbox').className, 'modal visible');
+        assert.not.equal(document.getElementById('overlay').className, 'overlay visible');
+      });
     });
 
     describe('New search functionality', function () {
@@ -61,13 +89,13 @@
 
       it('should return nothing if the searchbox is empty and submitted', function (done) {
         // Click the search button and check contents of #content
-
         var searchBtn = document.getElementById('searchbtn');
         var searchBox = document.getElementById('searchbox');
 
         searchBox.value = '';
         searchBtn.click();
         assert.equal(document.querySelectorAll('#thumbnails li').length, 0);
+        assert.ok(document.querySelector('.content.error'));
         done();
       });
       it('should update the title after a search', function (done) {
