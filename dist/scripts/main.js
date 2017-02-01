@@ -20,76 +20,87 @@
     this.setupThumbnails();
 
     // Attach containers for overlay and lightbox
-    this.setupOverlay();
     this.setupLightbox();
+    this.setupOverlay();
   }
 
   // Reset gallery content
   Gallery.prototype.resetGallery = function () {
     var content = document.getElementById('content');
-    lightbox.parentNode.removeChild(lightbox);
-    overlay.parentNode.removeChild(overlay);
     content.parentNode.removeChild(content);
   };
 
   // Set up overlay
   Gallery.prototype.setupOverlay = function () {
-    overlay = document.createElement('div');
-    overlay.className = 'overlay';
-    overlay.id = 'overlay';
-    overlay.title = 'Click anywhere to close';
-    this.container.appendChild(overlay);
+    // Check to see if it exists first
+    var currentOverlay = document.getElementById('overlay');
+
+    if (currentOverlay) {
+      return;
+    } else {
+      overlay = document.createElement('div');
+      overlay.className = 'overlay';
+      overlay.id = 'overlay';
+      overlay.title = 'Click anywhere to close';
+      this.container.appendChild(overlay);
+    }
   };
 
   // Set up lightbox
   Gallery.prototype.setupLightbox = function () {
+    // Check to see if it exists first
+    var currentOverlay = document.getElementById('overlay');
 
-    // Close button
-    var closeBtn = document.createElement('a');
-    closeBtn.href = '';
-    closeBtn.id = 'toggleclose';
-    closeBtn.title = 'Close lightbox';
-    closeBtn.alt = 'Close button for lightbox';
-    closeBtn.className = 'iconbtn close';
-    closeBtn.innerHTML = '<i class="fa fa-close fa-2x"></i>';
+    if (currentOverlay) {
+      return;
+    } else {
+      // Close button
+      var closeBtn = document.createElement('a');
+      closeBtn.href = '';
+      closeBtn.id = 'toggleclose';
+      closeBtn.title = 'Close lightbox';
+      closeBtn.alt = 'Close button for lightbox';
+      closeBtn.className = 'iconbtn close';
+      closeBtn.innerHTML = '<i class="fa fa-close fa-2x"></i>';
 
-    // Prev button
-    var prevBtn = document.createElement('a');
-    prevBtn.href = '';
-    prevBtn.id = 'toggleprev';
-    prevBtn.title = 'View previous photo';
-    prevBtn.alt = 'View previous photo';
-    prevBtn.className = 'iconbtn prev';
-    prevBtn.innerHTML = '<i class="fa fa-chevron-left fa-2x"></i>';
+      // Prev button
+      var prevBtn = document.createElement('a');
+      prevBtn.href = '';
+      prevBtn.id = 'toggleprev';
+      prevBtn.title = 'View previous photo';
+      prevBtn.alt = 'View previous photo';
+      prevBtn.className = 'iconbtn prev';
+      prevBtn.innerHTML = '<i class="fa fa-chevron-left fa-2x"></i>';
 
-    // Next button
-    var nextBtn = document.createElement('a');
-    nextBtn.href = '';
-    nextBtn.id = 'togglenext';
-    nextBtn.title = 'View next photo';
-    nextBtn.alt = 'View next photo';
-    nextBtn.className = 'iconbtn next';
-    nextBtn.innerHTML = '<i class="fa fa-chevron-right fa-2x"></i>';
+      // Next button
+      var nextBtn = document.createElement('a');
+      nextBtn.href = '';
+      nextBtn.id = 'togglenext';
+      nextBtn.title = 'View next photo';
+      nextBtn.alt = 'View next photo';
+      nextBtn.className = 'iconbtn next';
+      nextBtn.innerHTML = '<i class="fa fa-chevron-right fa-2x"></i>';
 
-    // Lightboxed photo
-    var lightboxPhoto = document.createElement('div');
-    lightboxPhoto.className = 'lightbox-photo';
-    lightboxPhoto.id = 'currentphoto';
+      // Lightboxed photo
+      var lightboxPhoto = document.createElement('div');
+      lightboxPhoto.className = 'lightbox-photo';
+      lightboxPhoto.id = 'currentphoto';
 
-    // Photo container
-    var photoContainer = document.createElement('div');
-    photoContainer.className = 'photo-container';
-    photoContainer.appendChild(prevBtn);
-    photoContainer.appendChild(lightboxPhoto);
-    photoContainer.appendChild(nextBtn);
+      // Photo container
+      var photoContainer = document.createElement('div');
+      photoContainer.className = 'photo-container';
+      photoContainer.appendChild(prevBtn);
+      photoContainer.appendChild(lightboxPhoto);
+      photoContainer.appendChild(nextBtn);
 
-    // Lightbox container
-    lightbox = document.createElement('div');
-    lightbox.id = 'lightbox';
-    lightbox.className = 'modal';
-    lightbox.appendChild(closeBtn);
-    lightbox.appendChild(photoContainer);
-    this.container.appendChild(lightbox);
+      // Lightbox container
+      lightbox = document.createElement('div');
+      lightbox.id = 'lightbox';
+      lightbox.className = 'modal';
+      lightbox.appendChild(closeBtn);
+      lightbox.appendChild(photoContainer);
+      this.container.appendChild(lightbox);
+    }
   };
 
   // Show the current photo
@@ -181,7 +192,7 @@
       var currentPhoto = this.photos[i];
       var thumbURL = Flickr.buildThumbnailURL(currentPhoto);
       var orientation = this.checkOrientation(currentPhoto);
-      var img, link, li;
+      var img, link, li, width;
 
       // Set up image
       img = document.createElement('img');
@@ -189,7 +200,15 @@
 
       // Set up link for triggering show photo
       link = document.createElement('a');
+      link.id = 'photo-' + i;
       link.href = img.src;
+
+      // Crop photo if too tall
+      if (orientation === 'portrait') {
+        width = currentPhoto.width_m;
+        link.style.maxHeight = width + 'px';
+      }
+
       link.appendChild(img);
 
       // Set up li
@@ -226,6 +245,12 @@
     var perPage = 33;
 
     var url = 'https://api.flickr.com/services/rest/?&method=' + apiMethod + '&api_key=' + apiKey + '&text=' + searchText + '&per_page=' + perPage + '&format=json&nojsoncallback=1&extras=' + extras;
+
+    if (!searchText) {
+      // Report no images if there's no search query
+      Main.displayError(container);
+      return;
+    }
 
     var request = new XMLHttpRequest();
     request.open('GET', url, true);
@@ -293,7 +318,6 @@
 
 // Main JS for Lightbox gallery
 // Author: Trish Ang / github.com/feesh
-/* global Main:true */
 /* global Flickr:true */
 /* global Gallery:true */
 
@@ -302,8 +326,9 @@
 
   var gallery;
   var galleryContainer;
-  var searchBox = document.getElementById('searchbox');
-  var searchBtn = document.getElementById('searchbtn');
+  var searchBox;
+  var searchBtn;
+  var searchText = 'NoBanNoWall'; // initial search term
 
   // Event listeners for the lightbox
   function setupLightboxNav() {
@@ -354,8 +379,10 @@
         gallery.closeLightbox();
       } else if (e.keyCode === 13) {
         // enter key
-        e.preventDefault();
-        newSearch(galleryContainer);
+        if (searchBox === document.activeElement) {
+          e.preventDefault();
+          newSearch(galleryContainer);
+        }
       }
     }
 
@@ -363,9 +390,62 @@
     document.onkeydown = checkKey;
   }
 
+  // Add header content to top of gallery
+  function setupHeader(target) {
+    // Check to see if it exists first
+    var currentHeader = document.getElementById('header');
+
+    if (currentHeader) {
+      return;
+    } else {
+      // Title
+      var title = document.createElement('h1');
+      title.id = 'searchtitle';
+      title.innerHTML = searchText;
+
+      // Search box
+      searchBox = document.createElement('input');
+      searchBox.type = 'text';
+      searchBox.id = 'searchbox';
+      searchBox.placeholder = 'Search here';
+
+      searchBtn = document.createElement('a');
+      searchBtn.className = 'btn submit';
+      searchBtn.id = 'searchbtn';
+      searchBtn.alt = 'Submit search';
+      searchBtn.title = 'Submit search';
+      searchBtn.innerHTML = 'Search';
+
+      // Add function to activate search box
+      searchBtn.addEventListener('click', function (event) {
+        event.preventDefault();
+        newSearch(galleryContainer);
+      });
+
+      var searchform = document.createElement('div');
+      searchform.className = 'searchform';
+      searchform.appendChild(searchBox);
+      searchform.appendChild(searchBtn);
+
+      // Containers
+      var content = document.createElement('div');
+      content.className = 'content';
+      content.appendChild(title);
+      content.appendChild(searchform);
+
+      var header = document.createElement('header');
+      header.appendChild(content);
+      header.id = 'header';
+
+      target.appendChild(header);
+    }
+  }
+
   // When data is available, set up the gallery
   function setupGallery(data, target) {
     var container = document.getElementById(target);
+
+    setupHeader(container);
     gallery = new Gallery(data.photos.photo, container);
 
     // Set up handlers
@@ -378,9 +458,33 @@
     setupGallery(data, container);
   }
 
+  // Trigger a new search
+  function newSearch(container) {
+    // Delete existing thumbs
+    gallery.resetGallery();
+
+    // Submit new search
+    var newSearchText = searchBox.value;
+    Flickr.callFlickr(processData, newSearchText, container);
+    searchBox.value = '';
+
+    // Update title
+    var title = document.getElementById('searchtitle');
+    title.innerHTML = newSearchText;
+  }
+
   // Display error message
   function displayError(target) {
     var container = document.getElementById(target);
+
+    // First reset #content if it's already there
+    var content = document.getElementById('content');
+    if (content) {
+      content.parentNode.removeChild(content);
+    }
+
+    // Set up header though
+    setupHeader(container);
 
     // Heading for error message
     var errorMsg = document.createElement('h3');
@@ -404,37 +508,18 @@
     // Content container
     var contentContainer = document.createElement('div');
     contentContainer.className = 'content error';
+    contentContainer.id = 'content';
     contentContainer.appendChild(errorImg);
     contentContainer.appendChild(errorMsg);
     contentContainer.appendChild(retryBtn);
     container.appendChild(contentContainer);
   }
 
-  // Trigger a new search
-  function newSearch(container) {
-    // Delete existing thumbs
-    gallery.resetGallery();
-
-    // Submit new search
-    var searchText = searchBox.value;
-    Flickr.callFlickr(processData, searchText, container);
-
-    // Update title
-    var title = document.getElementById('searchtitle');
-    title.innerHTML = searchText;
-  }
-
   // Initialize page with query
   function init(container) {
     galleryContainer = container;
 
-    Flickr.callFlickr(processData, 'nobannowall', galleryContainer);
-
-    // Add function to activate search box
-    searchBtn.addEventListener('click', function (event) {
-      event.preventDefault();
-      newSearch(galleryContainer);
-    });
+    Flickr.callFlickr(processData, searchText, galleryContainer);
   }
 
   window.Main = {
@@ -443,6 +528,4 @@
     displayError: displayError
   };
 })(document, window);
-
-Main.init('ui-gallery');
 //# sourceMappingURL=main.js.map
