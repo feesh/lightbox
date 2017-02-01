@@ -9,8 +9,9 @@
 
   var gallery;
   var galleryContainer;
-  var searchBox = document.getElementById('searchbox');
-  var searchBtn = document.getElementById('searchbtn');
+  var searchBox;
+  var searchBtn;
+  var searchText = '#NoBanNoWall'; // initial search term
 
   // Event listeners for the lightbox
   function setupLightboxNav() {
@@ -72,12 +73,54 @@
     document.onkeydown = checkKey;
   }
 
+  // Add header content to top of gallery
+  function setupHeader() {
+    // Title
+    var title = document.createElement('h1');
+    title.id = 'searchtitle';
+    title.text = searchText;
+
+    // Search box
+    searchBox = document.createElement('input');
+    searchBox.type = 'text';
+    searchBox.id = 'searchbox';
+    searchBox.placeholder = 'Search here';
+
+    searchBtn = document.createElement('a');
+    searchBtn.className = 'btn submit';
+    searchBtn.id = 'searchbtn';
+    searchBtn.alt = 'Submit search';
+    searchBtn.title = 'Submit search';
+    searchBtn.innerHTML = 'Search';
+
+    // Add function to activate search box
+    searchBtn.addEventListener('click', function(event) {
+      event.preventDefault();
+      newSearch(galleryContainer);
+    });
+
+    var searchform = document.createElement('div');
+    searchform.className = 'searchform';
+    searchform.appendChild(searchBox);
+    searchform.appendChild(searchBtn);
+
+    // Containers
+    var content = document.createElement('div');
+    content.className = 'content';
+    content.appendChild(title);
+    content.appendChild(searchform);
+
+    var header = document.createElement('header');
+    header.appendChild(content);
+  }
+
   // When data is available, set up the gallery
   function setupGallery(data, target) {
     var container = document.getElementById(target);
     gallery = new Gallery(data.photos.photo, container);
 
     // Set up handlers
+    setupHeader();
     setupLightboxNav();
     setupKeyCheck();
   }
@@ -125,26 +168,20 @@
     gallery.resetGallery();
 
     // Submit new search
-    var searchText = searchBox.value;
-    Flickr.callFlickr(processData, searchText, container);
+    var newSearchText = searchBox.value;
+    Flickr.callFlickr(processData, newSearchText, container);
     searchBox.value = '';
 
     // Update title
     var title = document.getElementById('searchtitle');
-    title.innerHTML = searchText;
+    title.innerHTML = newSearchText;
   }
 
   // Initialize page with query
   function init(container) {
     galleryContainer = container;
 
-    Flickr.callFlickr(processData, 'nobannowall', galleryContainer);
-
-    // Add function to activate search box
-    searchBtn.addEventListener('click', function(event) {
-      event.preventDefault();
-      newSearch(galleryContainer);
-    });
+    Flickr.callFlickr(processData, searchText, galleryContainer);
   }
 
   window.Main = {
@@ -153,5 +190,3 @@
     displayError: displayError
   };
 })(document, window);
-
-Main.init('ui-gallery');
