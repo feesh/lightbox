@@ -152,6 +152,9 @@
       content.parentNode.removeChild(content);
     };
 
+    // Set up header though
+    setupHeader(container);
+
     // Heading for error message
     var errorMsg = document.createElement('h3');
     errorMsg.innerHTML = 'Unfortunately, no photos are available at this time, please try again.';
