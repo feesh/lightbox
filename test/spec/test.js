@@ -1,3 +1,8 @@
+// Tests for lightbox gallery
+// Author: Trish Ang / github.com/feesh
+/* global Main:true */
+/* global assert:true */
+
 (function () {
   'use strict';
 
