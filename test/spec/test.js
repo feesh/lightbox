@@ -1,11 +1,25 @@
 (function () {
   'use strict';
 
-  describe('Give it some context', function () {
-    describe('maybe a bit more context here', function () {
-      it('should run here few assertions', function () {
+  describe('Initial state', function () {
+    describe('Gallery container upon initialization', function () {
 
+      Main.init('test-gallery', function () {
+        it('should have a header', function () {
+            assert.ok(document.getElementById('header'));
+        });
+        it('should have a content container', function () {
+          assert.ok(document.getElementById('content'));
+        });
+        it('should have a lightbox container', function () {
+          assert.ok(document.getElementById('lightbox'));
+        });
+        it('should have an overlay container', function () {
+          assert.ok(document.getElementById('overlay'));
+        });
+        done();
       });
     });
   });
+
 })();
