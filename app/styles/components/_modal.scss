@@ -45,7 +45,7 @@
     top: 0%;
     transition: $tx-all;
 
-    @include break-at($small-screens) { top: 5%; }
+    @include break-at($small-screens) { top: 8%; }
   }
 
   .close {

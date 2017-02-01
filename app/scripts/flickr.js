@@ -12,9 +12,15 @@
     var searchText = search;
     var apiMethod = 'flickr.photos.search';
     var extras = 'url_m,owner_name,views,geo,date_taken';
-    var perPage = 33;
+    var perPage = 3;
 
     var url = `https://api.flickr.com/services/rest/?&method=${apiMethod}&api_key=${apiKey}&text=${searchText}&per_page=${perPage}&format=json&nojsoncallback=1&extras=${extras}`;
+
+    if(!searchText) {
+      // Report no images if there's no search query
+      Main.displayError(container);
+      return;
+    }
 
     var request = new XMLHttpRequest();
     request.open('GET', url, true);

@@ -18,76 +18,87 @@
     this.setupThumbnails();
 
     // Attach containers for overlay and lightbox
-    this.setupOverlay();
     this.setupLightbox();
+    this.setupOverlay();
   }
 
   // Reset gallery content
   Gallery.prototype.resetGallery = function() {
     var content = document.getElementById('content');
-    lightbox.parentNode.removeChild(lightbox);
-    overlay.parentNode.removeChild(overlay);
     content.parentNode.removeChild(content);
   };
 
   // Set up overlay
   Gallery.prototype.setupOverlay = function() {
-    overlay = document.createElement('div');
-    overlay.className = 'overlay';
-    overlay.id = 'overlay';
-    overlay.title = 'Click anywhere to close';
-    this.container.appendChild(overlay);
+    // Check to see if it exists first
+    var currentOverlay = document.getElementById('overlay');
+
+    if(currentOverlay) {
+      return;
+    } else {
+      overlay = document.createElement('div');
+      overlay.className = 'overlay';
+      overlay.id = 'overlay';
+      overlay.title = 'Click anywhere to close';
+      this.container.appendChild(overlay);
+    }
   };
 
   // Set up lightbox
   Gallery.prototype.setupLightbox = function() {
+    // Check to see if it exists first
+    var currentOverlay = document.getElementById('overlay');
 
-    // Close button
-    var closeBtn = document.createElement('a');
-    closeBtn.href = '';
-    closeBtn.id = 'toggleclose';
-    closeBtn.title = 'Close lightbox';
-    closeBtn.alt = 'Close button for lightbox';
-    closeBtn.className = 'iconbtn close';
-    closeBtn.innerHTML = '<i class="fa fa-close fa-2x"></i>';
+    if(currentOverlay) {
+      return;
+    } else {
+      // Close button
+      var closeBtn = document.createElement('a');
+      closeBtn.href = '';
+      closeBtn.id = 'toggleclose';
+      closeBtn.title = 'Close lightbox';
+      closeBtn.alt = 'Close button for lightbox';
+      closeBtn.className = 'iconbtn close';
+      closeBtn.innerHTML = '<i class="fa fa-close fa-2x"></i>';
 
-    // Prev button
-    var prevBtn = document.createElement('a');
-    prevBtn.href = '';
-    prevBtn.id = 'toggleprev';
-    prevBtn.title = 'View previous photo';
-    prevBtn.alt = 'View previous photo';
-    prevBtn.className = 'iconbtn prev';
-    prevBtn.innerHTML = '<i class="fa fa-chevron-left fa-2x"></i>';
+      // Prev button
+      var prevBtn = document.createElement('a');
+      prevBtn.href = '';
+      prevBtn.id = 'toggleprev';
+      prevBtn.title = 'View previous photo';
+      prevBtn.alt = 'View previous photo';
+      prevBtn.className = 'iconbtn prev';
+      prevBtn.innerHTML = '<i class="fa fa-chevron-left fa-2x"></i>';
 
-    // Next button
-    var nextBtn = document.createElement('a');
-    nextBtn.href = '';
-    nextBtn.id = 'togglenext';
-    nextBtn.title = 'View next photo';
-    nextBtn.alt = 'View next photo';
-    nextBtn.className = 'iconbtn next';
-    nextBtn.innerHTML = '<i class="fa fa-chevron-right fa-2x"></i>';
+      // Next button
+      var nextBtn = document.createElement('a');
+      nextBtn.href = '';
+      nextBtn.id = 'togglenext';
+      nextBtn.title = 'View next photo';
+      nextBtn.alt = 'View next photo';
+      nextBtn.className = 'iconbtn next';
+      nextBtn.innerHTML = '<i class="fa fa-chevron-right fa-2x"></i>';
 
-    // Lightboxed photo
-    var lightboxPhoto = document.createElement('div');
-    lightboxPhoto.className = 'lightbox-photo';
-    lightboxPhoto.id = 'currentphoto';
+      // Lightboxed photo
+      var lightboxPhoto = document.createElement('div');
+      lightboxPhoto.className = 'lightbox-photo';
+      lightboxPhoto.id = 'currentphoto';
 
-    // Photo container
-    var photoContainer = document.createElement('div');
-    photoContainer.className = 'photo-container';
-    photoContainer.appendChild(prevBtn);
-    photoContainer.appendChild(lightboxPhoto);
-    photoContainer.appendChild(nextBtn);
+      // Photo container
+      var photoContainer = document.createElement('div');
+      photoContainer.className = 'photo-container';
+      photoContainer.appendChild(prevBtn);
+      photoContainer.appendChild(lightboxPhoto);
+      photoContainer.appendChild(nextBtn);
 
-    // Lightbox container
-    lightbox = document.createElement('div');
-    lightbox.id = 'lightbox';
-    lightbox.className = 'modal';
-    lightbox.appendChild(closeBtn);
-    lightbox.appendChild(photoContainer);
-    this.container.appendChild(lightbox);
+      // Lightbox container
+      lightbox = document.createElement('div');
+      lightbox.id = 'lightbox';
+      lightbox.className = 'modal';
+      lightbox.appendChild(closeBtn);
+      lightbox.appendChild(photoContainer);
+      this.container.appendChild(lightbox);
+    }
   };
 
   // Show the current photo
@@ -187,6 +198,7 @@
 
       // Set up link for triggering show photo
       link = document.createElement('a');
+      link.id = `photo-${i}`;
       link.href = img.src;
 
       // Crop photo if too tall
