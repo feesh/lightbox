@@ -24,6 +24,7 @@
 
   // Reset gallery content
   Gallery.prototype.resetGallery = function() {
+    var content = document.getElementById('content');
     lightbox.parentNode.removeChild(lightbox);
     overlay.parentNode.removeChild(overlay);
     content.parentNode.removeChild(content);
