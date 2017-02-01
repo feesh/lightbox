@@ -2,6 +2,7 @@
 // Author: Trish Ang / github.com/feesh
 /* global Main:true */
 /* global assert:true */
+/* global expect:true */
 
 (function () {
   'use strict';
