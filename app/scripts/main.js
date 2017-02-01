@@ -11,7 +11,7 @@
   var galleryContainer;
   var searchBox;
   var searchBtn;
-  var searchText = '#NoBanNoWall'; // initial search term
+  var searchText = 'NoBanNoWall'; // initial search term
 
   // Event listeners for the lightbox
   function setupLightboxNav() {
@@ -115,7 +115,10 @@
     header.id = 'header';
 
     var container = document.getElementById(target);
+    console.log(target);
+
     target.appendChild(header);
+
   }
 
   // When data is available, set up the gallery
@@ -166,6 +169,7 @@
     // Content container
     var contentContainer = document.createElement('div');
     contentContainer.className = 'content error';
+    contentContainer.id = 'content';
     contentContainer.appendChild(errorImg);
     contentContainer.appendChild(errorMsg);
     contentContainer.appendChild(retryBtn);
