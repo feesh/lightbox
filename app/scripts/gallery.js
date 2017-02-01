@@ -198,6 +198,7 @@
 
       // Set up link for triggering show photo
       link = document.createElement('a');
+      link.id = `photo-${i}`;
       link.href = img.src;
 
       // Crop photo if too tall

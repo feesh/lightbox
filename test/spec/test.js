@@ -13,70 +13,63 @@
       });
     });
 
+    beforeEach(function(done) {
+      setTimeout(function() {
+        done();
+      }, 1500);
+    });
+
     describe('Gallery container upon initialization', function () {
       it('initializes the gallery', function (done) {
         setTimeout(function () {
           Main.init('test-gallery');
-        }, 2000);
+        }, 50);
         done();
       });
-      it('should have a header', function (done) {
+      it('should have a header', function () {
         // Find the header
-        setTimeout(done(), 2000);
         assert.ok(document.getElementById('header'));
       });
-      it('should have a content container', function (done) {
+      it('should have a content container', function () {
         // Find the content element
-        setTimeout(done(), 2000);
         assert.ok(document.getElementById('content'));
       });
-      it('should have a lightbox container', function (done) {
+      it('should have a lightbox container', function () {
         // Find the lightbox element
-        setTimeout(done(), 2000);
         assert.ok(document.getElementById('lightbox'));
       });
-      it('should have an overlay container', function (done) {
+      it('should have an overlay container', function () {
         // Find the overlay element
-        setTimeout(done(), 2000);
         assert.ok(document.getElementById('overlay'));
       });
-      it('should not have more than one content container', function (done) {
+      it('should not have more than one content container', function () {
         // Check that multiple content divs weren't created
-        setTimeout(done(), 2000);
         assert.operator(document.querySelectorAll('#content').length, '<', 2);
       });
-      it('should load thumbnails if successful', function (done) {
+      it('should load thumbnails if successful', function () {
         // Make sure thumbnails list is not empty
-        setTimeout(done(), 2000);
         assert.operator(document.querySelectorAll('#thumbnails li').length, '>', 0);
       });
     });
 
     describe('Lightbox interaction', function () {
-      it('should have selectable thumbnails', function (done) {
+      it('should have selectable thumbnails', function () {
         // Find ul#thumbnails > li:first-child > a
-        setTimeout(function() {
-          var testLink = document.querySelector('#thumbnails li:first-child a');
-          setTimeout(function () {
-            testLink.click;
-            assert.ok(testLink);
-          }, 2000);
-        }, 2000);
-        done();
+        var testLink = document.getElementById('photo-1');
+        console.log(testLink);
+        testLink.click();
+        assert.ok(testLink);
       });
-      it('should show the lightbox when clicked', function (done) {
+      it('should show the lightbox when clicked', function () {
         // Click thumbnail and check for visible class on lightbox
-        setTimeout(done(), 2000);
         assert.equal(document.getElementById('lightbox').className, 'modal visible');
       });
-      it('should show the overlay when clicked', function (done) {
+      it('should show the overlay when clicked', function () {
         // Click thumbnail and check for visible class on overlay
-        setTimeout(done(), 2000);
         assert.equal(document.getElementById('overlay').className, 'overlay visible');
       });
-      it('should show the next image when right arrow clicked', function (done) {
+      it('should show the next image when right arrow clicked', function () {
         // Click next link and check for a different image
-        setTimeout(done(), 2000);
         var nextLink = document.getElementById('togglenext');
         var firstImage = document.querySelector('.lightbox-photo img');
 
@@ -85,9 +78,8 @@
         var secondImage = document.querySelector('.lightbox-photo img');
         assert.not.equal(firstImage, secondImage);
       });
-      it('should show the next image when right key pressed', function (done) {
+      it('should show the next image when right key pressed', function () {
         // Click next link and check for a different image
-        setTimeout(done(), 2000);
         var nextLink = document.getElementById('togglenext');
         var firstImage = document.querySelector('.lightbox-photo img');
 
@@ -96,9 +88,8 @@
         var secondImage = document.querySelector('.lightbox-photo img');
         assert.not.equal(firstImage, secondImage);
       });
-      it('should hide overlay and lightbox when close is clicked', function (done) {
+      it('should hide overlay and lightbox when close is clicked', function () {
         // Click close button then check for 'visible' on overlay and lightbox
-        setTimeout(done(), 2000);
         var closeBtn = document.getElementById('toggleclose');
         closeBtn.click();
         assert.not.equal(document.getElementById('lightbox').className, 'modal visible');
@@ -107,8 +98,7 @@
     });
 
     describe('New search functionality', function () {
-      it('should return nothing if the searchbox is empty and submitted', function (done) {
-        setTimeout(done(), 2000);
+      it('should return nothing if the searchbox is empty and submitted', function () {
 
         // Click the search button and check contents of #content
         var searchBtn = document.getElementById('searchbtn');
@@ -118,11 +108,9 @@
         searchBtn.click();
         assert.equal(document.querySelectorAll('#thumbnails li').length, 0);
         assert.ok(document.querySelector('.content.error'));
-        done();
       });
-      it('should update the title after a search', function (done) {
+      it('should update the title after a search', function () {
         // Check that title text equals search text after submitting
-        setTimeout(done(), 2000);
         var newSearchText = 'shark week';
         var searchTitle = document.getElementById('searchtitle');
         var searchBtn = document.getElementById('searchbtn');
@@ -132,15 +120,12 @@
         searchBtn.click();
 
         assert.equal(searchTitle.innerHTML, newSearchText);
-        done();
       });
-      it('should load photos after submitting search', function (done) {
+      it('should load photos after submitting search', function () {
         // Check that content is not empty, although how to check if it's not the old array?
-        setTimeout(done(), 2000);
         assert.operator(document.querySelectorAll('#thumbnails li').length, '>', 0);
       });
-      it('should not have more than one content container', function (done) {
-        setTimeout(done(), 2000);
+      it('should not have more than one content container', function () {
         // Check that the old content div was cleared out
         assert.operator(document.querySelectorAll('#content').length, '<', 2);
       });
