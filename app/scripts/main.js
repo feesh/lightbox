@@ -8,6 +8,8 @@
   'use strict';
 
   var gallery;
+  var searchBox = document.getElementById('searchbox');
+  var searchBtn = document.getElementById('searchbtn');
 
   // Event listeners for the lightbox
   function setupLightboxNav() {
@@ -56,6 +58,10 @@
       } else if (e.keyCode === 27) {
         // esc key exit lightbox
         gallery.closeLightbox();
+      } else if (e.keyCode === 13) {
+        // enter key
+        e.preventDefault();
+        newSearch('ui-gallery');
       }
     }
 
@@ -110,28 +116,28 @@
     container.appendChild(contentContainer);
   }
 
+  // Trigger a new search
+  function newSearch(container) {
+    // Delete existing thumbs
+    gallery.resetGallery();
+
+    // Submit new search
+    var searchText = searchBox.value;
+    Flickr.callFlickr(processData, searchText, container);
+
+    // Update title
+    var title = document.getElementById('searchtitle');
+    title.innerHTML = searchText;
+  }
+
   // Initialize page with query
   function init(container) {
     Flickr.callFlickr(processData, 'nobannowall', container);
 
     // Add function to activate search box
-    var searchBox = document.getElementById('searchbox');
-    var searchBtn = document.getElementById('searchbtn');
-
-    // Activate previous button
     searchBtn.addEventListener('click', function(event) {
       event.preventDefault();
-
-      // Delete existing thumbs
-      gallery.resetGallery();
-
-      // Submit new search
-      var searchText = searchBox.value;
-      Flickr.callFlickr(processData, searchText, container);
-
-      // Update title
-      var title = document.getElementById('searchtitle');
-      title.innerHTML = searchText;
+      newSearch(container);
     });
   }
 
