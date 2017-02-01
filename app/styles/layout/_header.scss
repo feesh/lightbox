@@ -5,6 +5,27 @@ header {
   border-radius: $default-corner $default-corner 0px 0px;
   border-bottom: 1px solid rgba($white, 0.25);
 
+  .content {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .searchform {
+    input {
+      font-size: 0.9rem;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: $default-corner 0px 0px $default-corner;
+    }
+
+    .btn {
+      padding: 0.5rem 1rem;
+      position: relative;
+      top: -1px; // Off slightly because of border
+      border-radius: 0px $default-corner $default-corner 0px;
+    }
+  }
+
   h1 {
     font-size: 1.5rem;
     margin: 0;
