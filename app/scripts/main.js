@@ -75,61 +75,64 @@
 
   // Add header content to top of gallery
   function setupHeader(target) {
-    // Title
-    var title = document.createElement('h1');
-    title.id = 'searchtitle';
-    title.innerHTML = searchText;
+    // Check to see if it exists first
+    var currentHeader = document.getElementById('header');
 
-    // Search box
-    searchBox = document.createElement('input');
-    searchBox.type = 'text';
-    searchBox.id = 'searchbox';
-    searchBox.placeholder = 'Search here';
+    if (currentHeader) {
+      return;
+    } else {
+      // Title
+      var title = document.createElement('h1');
+      title.id = 'searchtitle';
+      title.innerHTML = searchText;
 
-    searchBtn = document.createElement('a');
-    searchBtn.className = 'btn submit';
-    searchBtn.id = 'searchbtn';
-    searchBtn.alt = 'Submit search';
-    searchBtn.title = 'Submit search';
-    searchBtn.innerHTML = 'Search';
+      // Search box
+      searchBox = document.createElement('input');
+      searchBox.type = 'text';
+      searchBox.id = 'searchbox';
+      searchBox.placeholder = 'Search here';
 
-    // Add function to activate search box
-    searchBtn.addEventListener('click', function(event) {
-      event.preventDefault();
-      newSearch(galleryContainer);
-    });
+      searchBtn = document.createElement('a');
+      searchBtn.className = 'btn submit';
+      searchBtn.id = 'searchbtn';
+      searchBtn.alt = 'Submit search';
+      searchBtn.title = 'Submit search';
+      searchBtn.innerHTML = 'Search';
 
-    var searchform = document.createElement('div');
-    searchform.className = 'searchform';
-    searchform.appendChild(searchBox);
-    searchform.appendChild(searchBtn);
+      // Add function to activate search box
+      searchBtn.addEventListener('click', function(event) {
+        event.preventDefault();
+        newSearch(galleryContainer);
+      });
 
-    // Containers
-    var content = document.createElement('div');
-    content.className = 'content';
-    content.appendChild(title);
-    content.appendChild(searchform);
+      var searchform = document.createElement('div');
+      searchform.className = 'searchform';
+      searchform.appendChild(searchBox);
+      searchform.appendChild(searchBtn);
 
-    var header = document.createElement('header');
-    header.appendChild(content);
-    header.id = 'header';
+      // Containers
+      var content = document.createElement('div');
+      content.className = 'content';
+      content.appendChild(title);
+      content.appendChild(searchform);
 
-    var container = document.getElementById(target);
+      var header = document.createElement('header');
+      header.appendChild(content);
+      header.id = 'header';
 
-    target.appendChild(header);
+      var container = document.getElementById(target);
+
+      target.appendChild(header);
+    }
+
 
   }
 
   // When data is available, set up the gallery
   function setupGallery(data, target) {
     var container = document.getElementById(target);
-    var header = document.getElementById('header');
 
-    // Only set up the header the first time
-    if (!header) {
-      setupHeader(container);
-    }
-
+    setupHeader(container);
     gallery = new Gallery(data.photos.photo, container);
 
     // Set up handlers
