@@ -56,7 +56,6 @@
       it('should have selectable thumbnails', function () {
         // Find ul#thumbnails > li:first-child > a
         var testLink = document.getElementById('photo-1');
-        console.log(testLink);
         testLink.click();
         assert.ok(testLink);
       });
@@ -76,17 +75,23 @@
         // Navigate
         nextLink.click();
         var secondImage = document.querySelector('.lightbox-photo img');
-        assert.not.equal(firstImage, secondImage);
+        expect(firstImage.src).not.equal(secondImage.src);
       });
       it('should show the next image when right key pressed', function () {
         // Click next link and check for a different image
-        var nextLink = document.getElementById('togglenext');
         var firstImage = document.querySelector('.lightbox-photo img');
 
         // Navigate
-        nextLink.click();
+        var searchBox = document.getElementById('searchbox');
+        var event = document.createEvent('Keypress');
+        event.initEvent('change', true, false);
+        event.which = 27;
+        searchBox.dispatchEvent(event);
+
+        console.log(event);
+
         var secondImage = document.querySelector('.lightbox-photo img');
-        assert.not.equal(firstImage, secondImage);
+        expect(firstImage.src).not.equal(secondImage.src);
       });
       it('should hide overlay and lightbox when close is clicked', function () {
         // Click close button then check for 'visible' on overlay and lightbox
